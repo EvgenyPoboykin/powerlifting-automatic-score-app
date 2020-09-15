@@ -3,7 +3,7 @@ import { ContextApp } from '../../state';
 const { ipcRenderer } = window.require('electron');
 
 const TopBar_Logic = () => {
-    const { state } = useContext(ContextApp);
+    const { state, GoDialog } = useContext(ContextApp);
 
     const SaveStateInLocalstorage = () => {
         return new Promise((resolve) => {
@@ -30,7 +30,7 @@ const TopBar_Logic = () => {
         ipcRenderer.send('double-click-name');
     };
 
-    return { onClickClose, onClickMaximize, onClickMinimize, onDoubleClick };
+    return { onClickClose, onClickMaximize, onClickMinimize, onDoubleClick, GoDialog };
 };
 
 export default TopBar_Logic;

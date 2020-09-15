@@ -3,10 +3,12 @@ export interface IPage {
     trigger?: boolean;
     inpoint?: string;
     outpoint?: string;
+    indexZ?: number;
 }
 
 export interface IContainer {
     trigger?: boolean;
     inpoint?: string;
     outpoint?: string;
+    indexZ?: number;
 }

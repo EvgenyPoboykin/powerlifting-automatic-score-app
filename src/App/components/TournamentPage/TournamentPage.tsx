@@ -8,7 +8,7 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
     const { state, GoToStartFromTournament, GoToForm } = useContext(ContextApp);
 
     return (
-        <Page trigger={state.settingsApp[name]} inpoint='0%' outpoint='100%'>
+        <Page trigger={state.settingsApp[name]} inpoint='0%' outpoint={state.settingsApp.form ? '-100%' : '100%'}>
             <Container>
                 TournamentPage
                 <button onClick={GoToStartFromTournament} style={{ height: '30px', pointerEvents: 'all' }}>

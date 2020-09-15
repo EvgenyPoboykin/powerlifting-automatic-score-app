@@ -12,7 +12,8 @@ export const Container = styled.div.attrs({ className: 'Copyrights__container' }
     font-size: 12px;
     font-weight: 600;
     padding: 0px;
-    z-index: 10;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 100;
     border-top: 1px solid #222;
 `;
 export const ContainerText = styled.div.attrs({ className: 'Copyrights__container--text' })`
