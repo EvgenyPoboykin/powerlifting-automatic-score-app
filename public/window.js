@@ -10,12 +10,11 @@ exports.CreateWin = (app) => {
     // определение мониторовб 0 - главный
     const displays = electron.screen.getAllDisplays();
     mainWindow = new BrowserWindow({
-        width: displays[0].size.width,
-        height: displays[0].size.height,
+        width: 1920,
+        height: 1080,
         minWidth: 1200,
         minHeight: 900,
         frame: false,
-        resizable: false,
         webPreferences: {
             nodeIntegration: true,
             webSecurity: false,
@@ -28,10 +27,10 @@ exports.CreateWin = (app) => {
     const isDev = process.env.ELECTRON_DEVELOPMENT_MODE;
 
     //{ mode: 'undocked' }
-    isDev ? mainWindow.webContents.openDevTools() : null;
+    isDev ? mainWindow.webContents.openDevTools({ mode: 'undocked' }) : null;
 
     const localhost = 'http://localhost:3000/';
-    const build = `file://${path.join(__dirname, "../build/index.html")}`;
+    const build = `file://${path.join(__dirname, '../build/index.html')}`;
 
     mainWindow.loadURL(isDev ? localhost : build);
 

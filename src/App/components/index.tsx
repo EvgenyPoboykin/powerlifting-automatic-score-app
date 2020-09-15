@@ -1,0 +1,10 @@
+import StartAppPage from './StartAppPage';
+import AutorsPage from './AutorsPage';
+import TournamentPage from './TournamentPage';
+import FormAddSportsmanPage from './FormAddSportsmanPage';
+import Dialogs from './Dialogs';
+import TopBar from './TopBar';
+import Copyrights from './Copyrights';
+import Layouts from './Layouts';
+import Page from './Page';
+export { StartAppPage, AutorsPage, TournamentPage, FormAddSportsmanPage, Dialogs, TopBar, Copyrights, Layouts, Page };

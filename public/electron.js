@@ -9,9 +9,3 @@ const { CreateWin } = require(path.join(__dirname, './window.js'));
 app.on('ready', () => {
     CreateWin(app);
 });
-
-app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
-});
