@@ -7,6 +7,6 @@ export interface ITextBtn {
 export interface IButton {
     name: string;
     onClick: () => void;
-    width: number;
+    width?: number;
     mode?: string;
 }

@@ -3,6 +3,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div.attrs({ className: 'Dialogs__container' })`
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const ContainerBg = styled.div.attrs({ className: 'Dialogs__container--bg' })`

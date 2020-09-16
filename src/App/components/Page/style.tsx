@@ -3,7 +3,7 @@ import { IContainer } from './interfaces';
 
 export const Container = styled.div.attrs({ className: 'Page__container' })`
     display: flex;
-    position: fixed;
+    position: absolute;
     justify-content: center;
     align-items: center;
     flex-direction: column;
