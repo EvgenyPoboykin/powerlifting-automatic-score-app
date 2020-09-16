@@ -27,7 +27,7 @@ exports.CreateWin = (app) => {
     const isDev = process.env.ELECTRON_DEVELOPMENT_MODE;
 
     //{ mode: 'undocked' }
-    isDev ? mainWindow.webContents.openDevTools({ mode: 'undocked' }) : null;
+    isDev ? mainWindow.webContents.openDevTools() : null;
 
     const localhost = 'http://localhost:3000/';
     const build = `file://${path.join(__dirname, '../build/index.html')}`;

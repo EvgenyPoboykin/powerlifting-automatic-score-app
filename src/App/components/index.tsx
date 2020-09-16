@@ -7,4 +7,6 @@ import TopBar from './TopBar';
 import Copyrights from './Copyrights';
 import Layouts from './Layouts';
 import Page from './Page';
-export { StartAppPage, AutorsPage, TournamentPage, FormAddSportsmanPage, Dialogs, TopBar, Copyrights, Layouts, Page };
+import Button from './Button';
+import ButtonArrow from './ButtonArrow';
+export { StartAppPage, AutorsPage, TournamentPage, FormAddSportsmanPage, Dialogs, TopBar, Copyrights, Layouts, Page, Button, ButtonArrow };
