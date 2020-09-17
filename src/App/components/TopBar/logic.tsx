@@ -3,21 +3,10 @@ import { ContextApp } from '../../state';
 const { ipcRenderer } = window.require('electron');
 
 const TopBar_Logic = () => {
-    const { state, GoDialog } = useContext(ContextApp);
-
-    const SaveStateInLocalstorage = () => {
-        return new Promise((resolve) => {
-            localStorage.setItem('settingsApp', JSON.stringify(state.settingsApp));
-            localStorage.setItem('eventsList', JSON.stringify(state.eventsList));
-            localStorage.setItem('sportsmanList', JSON.stringify(state.sportsmanList));
-            resolve();
-        });
-    };
+    const { GoDialog } = useContext(ContextApp);
 
     const onClickClose = () => {
-        SaveStateInLocalstorage().then(() => {
-            ipcRenderer.send('close');
-        });
+        ipcRenderer.send('close');
     };
 
     const onClickMinimize = () => {

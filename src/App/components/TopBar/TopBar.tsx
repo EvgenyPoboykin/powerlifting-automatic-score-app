@@ -1,6 +1,15 @@
 import React, { memo } from 'react';
 import TopBar_Logic from './logic';
-import { Container, ContainerControls, ContainerName, ContainerSettings, Control, Name, AutorsLink, WrapperControls } from './style';
+import {
+    Container,
+    ContainerControls,
+    ContainerName,
+    ContainerSettings,
+    Control,
+    Name,
+    AutorsLink,
+    WrapperControls,
+} from './style';
 import json from '../../../../package.json';
 
 const TopBar: React.FC = memo(() => {
@@ -15,7 +24,7 @@ const TopBar: React.FC = memo(() => {
                 </WrapperControls>
             </ContainerControls>
             <ContainerName onDoubleClick={onDoubleClick}>
-                <Name>Powerlifting Automatic Score v {json.version}</Name>
+                <Name>Powerlifting Automatic Score v {json.version} (Standalone Version)</Name>
             </ContainerName>
             <ContainerSettings>
                 <AutorsLink onClick={GoDialog}>EN</AutorsLink>

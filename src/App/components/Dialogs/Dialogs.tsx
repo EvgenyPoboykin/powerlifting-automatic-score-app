@@ -4,14 +4,15 @@ import { Container, ContainerBg } from './style';
 import { IDialogs } from './interfaces';
 import { ContextApp } from '../../state';
 import ButtonArrow from '../ButtonArrow';
+import AutorsPage from '../AutorsPage';
 
 const Dialogs: React.FC<IDialogs> = memo(({ name }) => {
-    const { state, CloseDialog } = useContext(ContextApp);
+    const { settings, GoDialog } = useContext(ContextApp);
     return (
-        <Page trigger={state.settingsApp[name]} inpoint='0%' outpoint='-100%' indexZ={10}>
+        <Page trigger={settings[name]} inpoint='0%' outpoint='-100%' indexZ={10}>
             <Container>
-                AutorsPage
-                <ButtonArrow directional='up' onClick={CloseDialog} />
+                <AutorsPage />
+                <ButtonArrow directional='up' onClick={GoDialog} />
                 <ContainerBg></ContainerBg>
             </Container>
         </Page>

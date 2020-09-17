@@ -1,17 +1,28 @@
 import React, { memo, useContext } from 'react';
 import Page from '../Page';
-import { Container } from './style';
+import { Container, Content } from './style';
 import { IStartAppPage } from './interfaces';
 import { ContextApp } from '../../state';
-import Button from '../Button';
+import StartAppMenu from '../StartAppMenu';
+import StartAppListEvents from '../StartAppListEvents';
 
 const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
-    const { state, GoToTournament } = useContext(ContextApp);
+    const { settings, state } = useContext(ContextApp);
 
+    const grids = () => {
+        if (state.eventsList && state.eventsList.length > 0) {
+            return 'repeat(2, minmax(450px, 1fr))';
+        } else {
+            return 'minmax(450px, 1fr)';
+        }
+    };
     return (
-        <Page trigger={state.settingsApp[name]} inpoint='0%' outpoint='-100%'>
+        <Page trigger={settings[name]} inpoint='0%' outpoint='-100%'>
             <Container>
-                <Button mode='red' onClick={GoToTournament} name='create event' width={170}></Button>
+                <Content grid={grids()}>
+                    <StartAppMenu />
+                    {state.eventsList && state.eventsList.length > 0 ? <StartAppListEvents /> : null}
+                </Content>
             </Container>
         </Page>
     );

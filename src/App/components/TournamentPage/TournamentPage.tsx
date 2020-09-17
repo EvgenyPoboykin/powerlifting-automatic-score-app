@@ -7,10 +7,10 @@ import ButtonArrow from '../ButtonArrow';
 import Button from '../Button';
 
 const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
-    const { state, GoToStartFromTournament, GoToForm } = useContext(ContextApp);
+    const { settings, GoToStartFromTournament, GoToForm } = useContext(ContextApp);
 
     return (
-        <Page trigger={state.settingsApp[name]} inpoint='0%' outpoint={state.settingsApp.form ? '-100%' : '100%'}>
+        <Page trigger={settings[name]} inpoint='0%' outpoint={settings.form ? '-100%' : '100%'}>
             <Container>
                 TournamentPage
                 <ButtonArrow directional='up' onClick={GoToStartFromTournament} />

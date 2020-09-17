@@ -6,10 +6,40 @@ import {} from './interfaces';
 import { TopBar, Layouts, Copyrights } from './components';
 
 const App: React.FC = memo(() => {
-    const { state, GoToTournament, GoToStartFromTournament, GoToForm, GoToTournamentFromForm, GoDialog, CloseDialog } = App_Logic();
+    const {
+        state,
+        settings,
+        GoToTournament,
+        GoToStartFromTournament,
+        GoToForm,
+        GoToTournamentFromForm,
+        GoDialog,
+        onChangeCreateEvent,
+        valueStartAppInput,
+        onKeyDownCreateEvent,
+        onClickEvent,
+        CreateEventAndGoTournament,
+        onClickDeleteEvent,
+    } = App_Logic();
     console.log(state);
     return (
-        <ProviderApp value={{ state, GoToTournament, GoToStartFromTournament, GoToForm, GoToTournamentFromForm, GoDialog, CloseDialog }}>
+        <ProviderApp
+            value={{
+                state,
+                settings,
+                GoToTournament,
+                GoToStartFromTournament,
+                GoToForm,
+                GoToTournamentFromForm,
+                GoDialog,
+                onChangeCreateEvent,
+                valueStartAppInput,
+                onKeyDownCreateEvent,
+                onClickEvent,
+                CreateEventAndGoTournament,
+                onClickDeleteEvent,
+            }}
+        >
             <Container>
                 <TopBar />
                 <Layouts />

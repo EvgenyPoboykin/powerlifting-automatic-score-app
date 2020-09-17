@@ -1,4 +1,3 @@
-export interface IContainer {}
-export interface IAutorsPage {
-    name: string;
+export interface IContainerContent {
+    disabled: boolean;
 }

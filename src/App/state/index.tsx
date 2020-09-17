@@ -1,12 +1,29 @@
 import React from 'react';
 
-export const Context = {
-    settingsApp: { lang: 'en', start: true, tournament: false, form: false, dialog: false },
+interface ISettings {
+    lang: boolean;
+    start: boolean;
+    tournament: boolean;
+    form: boolean;
+    dialog: boolean;
+}
+interface IContext {
+    eventsList: any | [];
+    event: any | {};
+}
+export const Settings: ISettings = {
+    lang: false,
+    start: true,
+    tournament: false,
+    form: false,
+    dialog: false,
+};
+export const State: IContext = {
     eventsList: [],
-    sportsmanList: [],
+    event: {},
 };
 
-export const ContextApp = React.createContext<any>(Context);
+export const ContextApp = React.createContext<any>({ State, Settings });
 
 export interface IProvider {
     value: any;

@@ -6,9 +6,9 @@ import { ContextApp } from '../../state';
 import ButtonArrow from '../ButtonArrow';
 
 const FormAddSportsmanPage: React.FC<IFormAddSportsmanPage> = memo(({ name }) => {
-    const { state, GoToTournamentFromForm } = useContext(ContextApp);
+    const { settings, GoToTournamentFromForm } = useContext(ContextApp);
     return (
-        <Page trigger={state.settingsApp[name]} inpoint='0%' outpoint='100%'>
+        <Page trigger={settings[name]} inpoint='0%' outpoint='100%'>
             <Container>
                 <div>FormAddSportsmanPage</div>
                 <ButtonArrow directional='up' onClick={GoToTournamentFromForm} />
