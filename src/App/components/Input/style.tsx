@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IIContainer } from './interfaces';
 
-export const Container = styled.input.attrs({ className: 'Input__container' })`
+export const Container = styled.input.attrs<IIContainer>({ className: 'Input__container' })`
     background-color: rgba(0, 0, 0, 0);
     border: 0px;
     border-bottom: 1px solid #808080;

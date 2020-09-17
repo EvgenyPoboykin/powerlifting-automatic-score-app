@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { Container } from './style';
 import {} from './interfaces';
 import { ContextApp } from '../../state';
@@ -7,7 +7,6 @@ import StartAppEvent from '../StartAppEvent';
 const StartAppListEvents: React.FC = memo(() => {
     const { state, onClickEvent, onClickDeleteEvent } = useContext(ContextApp);
 
-    const ProxyOnClickEvent = useCallback((id: number) => onClickEvent(id), [onClickEvent]);
     return (
         <Container>
             {state.eventsList &&

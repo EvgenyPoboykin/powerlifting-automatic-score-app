@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { State, Settings } from './state';
 
 const MAX_RANDOM = 1000000000000;
@@ -6,27 +6,29 @@ const MAX_RANDOM = 1000000000000;
 const App_Logic = () => {
     const [state, SetState] = useState(State);
     const [settings, SetSettings] = useState(Settings);
-    const [valueStartAppInput, SetValueStartAppInput] = useState<string>('');
 
-    const GetItemLS = (key: string) => {
+    const GetItemLS = useCallback((key: string) => {
         const data: any = localStorage.getItem(key);
         return JSON.parse(data);
-    };
-    const SetItemLS = (key: string, obj: any) => {
+    }, []);
+    const SetItemLS = useCallback((key: string, obj: any) => {
         return localStorage.setItem(key, JSON.stringify(obj));
-    };
-    const UpdateSL = (key: string, property: string, value: any) => {
-        var obj = GetItemLS(key);
-        obj[property] = value;
-        SetItemLS(key, obj);
-    };
-    const UpdateEventListSL = (key: string, value: any) => {
-        var obj = GetItemLS(key);
-        obj = [...obj, value];
-        SetItemLS(key, obj);
-    };
+    }, []);
+    const UpdateSL = useCallback(
+        (key: string, property: string, value: any) => {
+            var obj = GetItemLS(key);
+            obj[property] = value;
+            SetItemLS(key, obj);
+        },
+        [SetItemLS, GetItemLS]
+    );
+    // const UpdateEventListSL = (key: string, value: any) => {
+    //     var obj = GetItemLS(key);
+    //     obj = [...obj, value];
+    //     SetItemLS(key, obj);
+    // };
 
-    const GoToTournament = () => {
+    const GoToTournament = useCallback(() => {
         SetSettings((prev) => ({
             ...prev,
             tournament: true,
@@ -35,33 +37,38 @@ const App_Logic = () => {
 
         UpdateSL('settingsApp', 'tournament', true);
         UpdateSL('settingsApp', 'start', false);
-    };
+    }, [SetSettings, UpdateSL]);
 
     // Logic ${name} START
-    const CreateEventAndGoTournament = () => {
+    const CreateEventAndGoTournament = (value: any) => {
         let newEvent = {
-            event: valueStartAppInput,
+            event: value,
             id: Math.floor(Math.random() * Math.floor(MAX_RANDOM)),
             date: new Date(),
             sportsmans: [],
         };
 
+        const newEventList = [newEvent, ...state.eventsList];
+
         SetState((prev) => ({
             ...prev,
-            eventsList: [...prev.eventsList, newEvent],
+            eventsList: newEventList,
+            event: newEvent,
         }));
 
-        SetValueStartAppInput('');
-        UpdateEventListSL('eventsList', newEvent);
+        SetSettings((prev) => ({
+            ...prev,
+            tournament: true,
+            start: false,
+        }));
 
-        GoToTournament();
+        localStorage.setItem('event', JSON.stringify(newEvent));
+        localStorage.setItem('eventsList', JSON.stringify(newEventList));
+
+        UpdateSL('settingsApp', 'tournament', true);
+        UpdateSL('settingsApp', 'start', false);
     };
 
-    const onKeyDownCreateEvent = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            CreateEventAndGoTournament();
-        }
-    };
     const GoToStartFromTournament = () => {
         SetSettings((prev) => ({
             ...prev,
@@ -70,7 +77,7 @@ const App_Logic = () => {
         }));
 
         SetState((prev) => ({ ...prev, event: {} }));
-
+        localStorage.setItem('event', JSON.stringify({}));
         UpdateSL('settingsApp', 'tournament', false);
         UpdateSL('settingsApp', 'start', true);
     };
@@ -103,17 +110,18 @@ const App_Logic = () => {
 
         UpdateSL('settingsApp', 'dialog', !settings.dialog);
     };
-    const onChangeCreateEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-        SetValueStartAppInput(e.currentTarget.value);
-    };
 
-    const onClickEvent = (id: number) => {
-        const newEvent = state.eventsList && state.eventsList.filter((item: any) => id === item.id);
+    const onClickEvent = useCallback(
+        (id: number) => {
+            const newEvent = state.eventsList && state.eventsList.filter((item: any) => id === item.id);
 
-        SetState((prev) => ({ ...prev, event: newEvent[0] }));
-        localStorage.setItem('event', JSON.stringify(newEvent[0]));
-        GoToTournament();
-    };
+            SetState((prev) => ({ ...prev, event: newEvent[0] }));
+            localStorage.setItem('event', JSON.stringify(newEvent[0]));
+            GoToTournament();
+        },
+        [SetState, GoToTournament, state.eventsList]
+    );
+
     const onClickDeleteEvent = (id: number) => {
         const newEventsList = state.eventsList && state.eventsList.filter((item: any) => id !== item.id);
 
@@ -128,8 +136,6 @@ const App_Logic = () => {
         const settingsArray: any = JSON.parse(settingsLS);
         const eventsArray: any = JSON.parse(eventsLS);
 
-        console.log(eventsLS);
-
         if (settingsArray !== settings && eventsArray && eventsArray.length !== 0 && eventsArray !== null) {
             SetState((prev) => ({ ...prev, eventsList: eventsArray }));
             SetSettings((prev) => ({ ...prev, settingsArray }));
@@ -141,21 +147,18 @@ const App_Logic = () => {
             localStorage.setItem('event', JSON.stringify(state.event));
             localStorage.setItem('eventsList', JSON.stringify(state.eventsList));
         }
-    }, [SetState]);
+    }, [SetState, SetSettings]);
     // Logic ${name} END
 
     return {
         state,
         settings,
-        valueStartAppInput,
         GoToTournament,
         CreateEventAndGoTournament,
         GoToStartFromTournament,
         GoToForm,
         GoToTournamentFromForm,
         GoDialog,
-        onChangeCreateEvent,
-        onKeyDownCreateEvent,
         onClickEvent,
         onClickDeleteEvent,
     };

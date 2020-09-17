@@ -1,7 +1,7 @@
 export interface IInput {
-    value: string;
-
-    onChangeInput: (e: React.ChangeEvent) => void;
-    onKeyDown?: (e: React.KeyboardEvent) => void;
+    placeholder?: string;
+    value: any;
+    onKeyDown: (e: React.KeyboardEvent) => void;
+    onChange: (e: any) => void;
 }
-export interface IContainer {}
+export interface IIContainer {}
