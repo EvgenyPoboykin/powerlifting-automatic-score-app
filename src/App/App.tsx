@@ -10,6 +10,8 @@ const App: React.FC = memo(() => {
         state,
         settings,
         languages,
+        focusinput,
+        SetFocusInput,
         GoToTournament,
         GoToStartFromTournament,
         GoToForm,
@@ -20,13 +22,15 @@ const App: React.FC = memo(() => {
         onClickDeleteEvent,
         ChangeLang,
     } = App_Logic();
-    console.log(state);
+    console.log(state, settings, focusinput);
     return (
         <ProviderApp
             value={{
                 state,
                 settings,
                 languages,
+                focusinput,
+                SetFocusInput,
                 GoToTournament,
                 GoToStartFromTournament,
                 GoToForm,

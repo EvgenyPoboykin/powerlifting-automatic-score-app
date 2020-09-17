@@ -9,8 +9,8 @@ const StartAppListEvents: React.FC = memo(() => {
 
     return (
         <Container>
-            {state.eventsList &&
-                state.eventsList.map((item: any) => (
+            {state.eventslist &&
+                state.eventslist.map((item: any) => (
                     <StartAppEvent
                         key={item.id}
                         item={item}

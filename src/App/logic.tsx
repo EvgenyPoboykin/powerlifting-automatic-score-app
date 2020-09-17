@@ -7,27 +7,7 @@ const App_Logic = () => {
     const [state, SetState] = useState(State);
     const [settings, SetSettings] = useState(Settings);
     const [languages, SetLanguages] = useState(Language_RU);
-
-    const GetItemLS = useCallback((key: string) => {
-        const data: any = localStorage.getItem(key);
-        return JSON.parse(data);
-    }, []);
-    const SetItemLS = useCallback((key: string, obj: any) => {
-        return localStorage.setItem(key, JSON.stringify(obj));
-    }, []);
-    const UpdateSL = useCallback(
-        (key: string, property: string, value: any) => {
-            var obj = GetItemLS(key);
-            obj[property] = value;
-            SetItemLS(key, obj);
-        },
-        [SetItemLS, GetItemLS]
-    );
-    // const UpdateEventListSL = (key: string, value: any) => {
-    //     var obj = GetItemLS(key);
-    //     obj = [...obj, value];
-    //     SetItemLS(key, obj);
-    // };
+    const [focusinput, SetFocusInput] = useState(false);
 
     const ChangeLang = (value: string) => {
         const region = () => {
@@ -50,10 +30,7 @@ const App_Logic = () => {
             tournament: true,
             start: false,
         }));
-
-        UpdateSL('settingsApp', 'tournament', true);
-        UpdateSL('settingsApp', 'start', false);
-    }, [SetSettings, UpdateSL]);
+    }, [SetSettings]);
 
     // Logic ${name} START
     const CreateEventAndGoTournament = (value: any) => {
@@ -64,11 +41,11 @@ const App_Logic = () => {
             sportsmans: [],
         };
 
-        const newEventList = [newEvent, ...state.eventsList];
+        // const newEventList = [newEvent, ...state.eventsList];
 
         SetState((prev) => ({
             ...prev,
-            eventsList: newEventList,
+            eventslist: [newEvent, ...prev.eventslist],
             event: newEvent,
         }));
 
@@ -77,12 +54,6 @@ const App_Logic = () => {
             tournament: true,
             start: false,
         }));
-
-        localStorage.setItem('event', JSON.stringify(newEvent));
-        localStorage.setItem('eventsList', JSON.stringify(newEventList));
-
-        UpdateSL('settingsApp', 'tournament', true);
-        UpdateSL('settingsApp', 'start', false);
     };
 
     const GoToStartFromTournament = () => {
@@ -93,9 +64,6 @@ const App_Logic = () => {
         }));
 
         SetState((prev) => ({ ...prev, event: {} }));
-        localStorage.setItem('event', JSON.stringify({}));
-        UpdateSL('settingsApp', 'tournament', false);
-        UpdateSL('settingsApp', 'start', true);
     };
     const GoToForm = () => {
         SetSettings((prev) => ({
@@ -103,19 +71,14 @@ const App_Logic = () => {
             tournament: false,
             form: true,
         }));
-
-        UpdateSL('settingsApp', 'tournament', false);
-        UpdateSL('settingsApp', 'form', true);
     };
+
     const GoToTournamentFromForm = () => {
         SetSettings((prev) => ({
             ...prev,
             tournament: true,
             form: false,
         }));
-
-        UpdateSL('settingsApp', 'tournament', true);
-        UpdateSL('settingsApp', 'form', false);
     };
 
     const GoDialog = () => {
@@ -123,53 +86,50 @@ const App_Logic = () => {
             ...prev,
             dialog: !settings.dialog,
         }));
-
-        UpdateSL('settingsApp', 'dialog', !settings.dialog);
     };
 
     const onClickEvent = useCallback(
         (id: number) => {
-            const newEvent = state.eventsList && state.eventsList.filter((item: any) => id === item.id);
+            const newEvent = state.eventslist && state.eventslist.filter((item: any) => id === item.id);
 
             SetState((prev) => ({ ...prev, event: newEvent[0] }));
-            localStorage.setItem('event', JSON.stringify(newEvent[0]));
             GoToTournament();
         },
-        [SetState, GoToTournament, state.eventsList]
+        [SetState, GoToTournament, state.eventslist]
     );
 
     const onClickDeleteEvent = (id: number) => {
-        const newEventsList = state.eventsList && state.eventsList.filter((item: any) => id !== item.id);
-
-        SetState((prev) => ({ ...prev, eventsList: newEventsList }));
-        localStorage.setItem('eventsList', JSON.stringify(newEventsList));
+        const newEventsList = state.eventslist && state.eventslist.filter((item: any) => id !== item.id);
+        SetState((prev) => ({ ...prev, eventslist: newEventsList }));
     };
 
     useEffect(() => {
-        const settingsLS: any = localStorage.getItem('settingsApp');
-        const eventsLS: any = localStorage.getItem('eventsList');
+        const settingsLS: any = localStorage.getItem('settingsapp');
+        const eventsLS: any = localStorage.getItem('eventslist');
+        const eventLS: any = localStorage.getItem('event');
 
         const settingsArray: any = JSON.parse(settingsLS);
         const eventsArray: any = JSON.parse(eventsLS);
+        const eventArray: any = JSON.parse(eventLS);
 
-        if (settingsArray !== settings && eventsArray && eventsArray.length !== 0 && eventsArray !== null) {
-            SetState((prev) => ({ ...prev, eventsList: eventsArray }));
-            SetSettings((prev) => ({ ...prev, settingsArray }));
-        }
-        if (settingsLS === null) {
-            localStorage.setItem('settingsApp', JSON.stringify(settings));
-        }
-        if (eventsLS === null) {
-            localStorage.setItem('event', JSON.stringify(state.event));
-            localStorage.setItem('eventsList', JSON.stringify(state.eventsList));
-        }
-    }, [SetState, SetSettings]);
+        // if (settingsArray && eventsArray.length 0 && eventArray !== {}) {
+        SetState((prev) => ({ ...prev, eventslist: eventsArray, event: eventArray }));
+        SetSettings(settingsArray);
+        // }
+        //  else {
+        // localStorage.setItem('settingsapp', JSON.stringify(settings));
+        // localStorage.setItem('event', JSON.stringify(state.event));
+        // localStorage.setItem('eventslist', JSON.stringify(state.eventslist));
+        // }
+    }, []);
     // Logic ${name} END
 
     return {
         state,
         settings,
         languages,
+        focusinput,
+        SetFocusInput,
         GoToTournament,
         CreateEventAndGoTournament,
         GoToStartFromTournament,

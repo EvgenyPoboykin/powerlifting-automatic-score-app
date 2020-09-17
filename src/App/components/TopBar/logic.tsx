@@ -1,12 +1,29 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ContextApp } from '../../state';
 const { ipcRenderer } = window.require('electron');
 
 const TopBar_Logic = () => {
-    const { GoDialog, ChangeLang, settings } = useContext(ContextApp);
+    const { GoDialog, ChangeLang, settings, state, focusinput } = useContext(ContextApp);
+
+    const SaveDataInLocalStorage = () => {
+        return new Promise((resolve) => {
+            localStorage.setItem('event', JSON.stringify(state.event));
+            localStorage.setItem('eventslist', JSON.stringify(state.eventslist));
+            localStorage.setItem('settingsapp', JSON.stringify(settings));
+            resolve();
+        });
+    };
 
     const onClickClose = () => {
-        ipcRenderer.send('close');
+        SaveDataInLocalStorage().then(() => ipcRenderer.send('close'));
+    };
+
+    const ShortCut = (e: KeyboardEvent) => {
+        e.preventDefault();
+
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Q') {
+            SaveDataInLocalStorage().then(() => ipcRenderer.send('close'));
+        }
     };
 
     const onClickMinimize = () => {
@@ -18,6 +35,18 @@ const TopBar_Logic = () => {
     const onDoubleClick = () => {
         ipcRenderer.send('double-click-name');
     };
+
+    useEffect(() => {
+        if (!focusinput) {
+            window.addEventListener('keydown', ShortCut);
+        }
+
+        return () => {
+            if (!focusinput) {
+                window.removeEventListener('keydown', ShortCut);
+            }
+        };
+    });
 
     return { onClickClose, onClickMaximize, onClickMinimize, onDoubleClick, GoDialog, ChangeLang, settings };
 };

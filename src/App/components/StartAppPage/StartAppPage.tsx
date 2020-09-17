@@ -10,7 +10,7 @@ const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
     const { settings, state } = useContext(ContextApp);
 
     const grids = () => {
-        if (state.eventsList && state.eventsList.length > 0) {
+        if (state.eventslist && state.eventslist.length > 0) {
             return 'repeat(2, minmax(450px, 1fr))';
         } else {
             return 'minmax(450px, 1fr)';
@@ -21,7 +21,7 @@ const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
             <Container>
                 <Content grid={grids()}>
                     <StartAppMenu />
-                    {state.eventsList && state.eventsList.length > 0 ? <StartAppListEvents /> : null}
+                    {state.eventslist && state.eventslist.length > 0 ? <StartAppListEvents /> : null}
                 </Content>
             </Container>
         </Page>

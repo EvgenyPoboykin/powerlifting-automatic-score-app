@@ -8,7 +8,7 @@ interface ISettings {
     dialog: boolean;
 }
 interface IContext {
-    eventsList: any | [];
+    eventslist: any | [];
     event: any | {};
 }
 export const Settings: ISettings = {
@@ -19,7 +19,7 @@ export const Settings: ISettings = {
     dialog: false,
 };
 export const State: IContext = {
-    eventsList: [],
+    eventslist: [],
     event: {},
 };
 export const Language_RU = {
