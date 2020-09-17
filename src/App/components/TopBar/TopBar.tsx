@@ -24,7 +24,7 @@ const TopBar: React.FC = memo(() => {
                 </WrapperControls>
             </ContainerControls>
             <ContainerName onDoubleClick={onDoubleClick}>
-                <Name>Powerlifting Automatic Score v {json.version} (Standalone Version)</Name>
+                <Name>Powerlifting Automatic Score v {json.version} (Standalone)</Name>
             </ContainerName>
             <ContainerSettings>
                 <AutorsLink onClick={GoDialog}>EN</AutorsLink>

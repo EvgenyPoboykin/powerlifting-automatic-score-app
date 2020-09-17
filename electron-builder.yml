@@ -1,6 +1,6 @@
 appId: powerlifting.automatic.score
 copyright: Evgeny Poboykin
-productName: Powerlifting Automatic Score (Standalone Version)
+productName: Powerlifting Automatic Score (Standalone)
 asar: true
 
 directories:
@@ -37,7 +37,7 @@ dmg:
           y: 150
 
 win:
-    publisherName: Powerlifting Automatic Score (Standalone Version)
+    publisherName: Powerlifting Automatic Score (Standalone)
     target:
         - nsis
         - zip

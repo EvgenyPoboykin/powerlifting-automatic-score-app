@@ -111,6 +111,7 @@ const App_Logic = () => {
         const newEvent = state.eventsList && state.eventsList.filter((item: any) => id === item.id);
 
         SetState((prev) => ({ ...prev, event: newEvent[0] }));
+        localStorage.setItem('event', JSON.stringify(newEvent[0]));
         GoToTournament();
     };
     const onClickDeleteEvent = (id: number) => {
