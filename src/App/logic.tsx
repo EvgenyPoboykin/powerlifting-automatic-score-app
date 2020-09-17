@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
-import { State, Settings } from './state';
+import { State, Settings, Language_RU, Language_EN } from './state';
 
 const MAX_RANDOM = 1000000000000;
 
 const App_Logic = () => {
     const [state, SetState] = useState(State);
     const [settings, SetSettings] = useState(Settings);
+    const [languages, SetLanguages] = useState(Language_RU);
 
     const GetItemLS = useCallback((key: string) => {
         const data: any = localStorage.getItem(key);
@@ -27,6 +28,21 @@ const App_Logic = () => {
     //     obj = [...obj, value];
     //     SetItemLS(key, obj);
     // };
+
+    const ChangeLang = (value: string) => {
+        const region = () => {
+            if (value === 'RU') return 'EN';
+            if (value === 'EN') return 'RU';
+        };
+
+        if (region() === 'EN') {
+            SetLanguages(Language_EN);
+        } else {
+            SetLanguages(Language_RU);
+        }
+        console.log(region());
+        SetSettings((prev) => ({ ...prev, lang: !settings.lang }));
+    };
 
     const GoToTournament = useCallback(() => {
         SetSettings((prev) => ({
@@ -153,6 +169,7 @@ const App_Logic = () => {
     return {
         state,
         settings,
+        languages,
         GoToTournament,
         CreateEventAndGoTournament,
         GoToStartFromTournament,
@@ -161,6 +178,7 @@ const App_Logic = () => {
         GoDialog,
         onClickEvent,
         onClickDeleteEvent,
+        ChangeLang,
     };
 };
 

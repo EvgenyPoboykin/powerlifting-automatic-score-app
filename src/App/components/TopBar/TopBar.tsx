@@ -13,7 +13,15 @@ import {
 import json from '../../../../package.json';
 
 const TopBar: React.FC = memo(() => {
-    const { onClickClose, onClickMaximize, onClickMinimize, onDoubleClick, GoDialog } = TopBar_Logic();
+    const {
+        onClickClose,
+        onClickMaximize,
+        onClickMinimize,
+        onDoubleClick,
+        GoDialog,
+        ChangeLang,
+        settings,
+    } = TopBar_Logic();
     return (
         <Container>
             <ContainerControls>
@@ -27,7 +35,9 @@ const TopBar: React.FC = memo(() => {
                 <Name>Powerlifting Automatic Score v {json.version} (Standalone)</Name>
             </ContainerName>
             <ContainerSettings>
-                <AutorsLink onClick={GoDialog}>EN</AutorsLink>
+                <AutorsLink onClick={(e) => ChangeLang(e.currentTarget!.textContent)}>
+                    {settings.lang ? 'EN' : 'RU'}
+                </AutorsLink>
                 <AutorsLink onClick={GoDialog}>Autors</AutorsLink>
             </ContainerSettings>
         </Container>

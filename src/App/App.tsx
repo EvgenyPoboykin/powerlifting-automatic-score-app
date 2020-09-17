@@ -9,6 +9,7 @@ const App: React.FC = memo(() => {
     const {
         state,
         settings,
+        languages,
         GoToTournament,
         GoToStartFromTournament,
         GoToForm,
@@ -17,6 +18,7 @@ const App: React.FC = memo(() => {
         onClickEvent,
         CreateEventAndGoTournament,
         onClickDeleteEvent,
+        ChangeLang,
     } = App_Logic();
     console.log(state);
     return (
@@ -24,6 +26,7 @@ const App: React.FC = memo(() => {
             value={{
                 state,
                 settings,
+                languages,
                 GoToTournament,
                 GoToStartFromTournament,
                 GoToForm,
@@ -32,6 +35,7 @@ const App: React.FC = memo(() => {
                 onClickEvent,
                 CreateEventAndGoTournament,
                 onClickDeleteEvent,
+                ChangeLang,
             }}
         >
             <Container>

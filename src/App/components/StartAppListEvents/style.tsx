@@ -6,6 +6,9 @@ export const Container = styled.div.attrs({ className: 'StartAppListEvents__cont
     height: 370px;
     overflow: auto;
     pointer-events: all;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    padding: 10px;
 
     &::-webkit-scrollbar {
         display: none;

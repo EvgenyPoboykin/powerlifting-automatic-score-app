@@ -22,6 +22,14 @@ export const State: IContext = {
     eventsList: [],
     event: {},
 };
+export const Language_RU = {
+    event_name: 'Название Мероприятия',
+    create_event: 'Создать Мероприятие',
+};
+export const Language_EN = {
+    event_name: 'Event Name',
+    create_event: 'Create Event',
+};
 
 export const ContextApp = React.createContext<any>({ State, Settings });
 
