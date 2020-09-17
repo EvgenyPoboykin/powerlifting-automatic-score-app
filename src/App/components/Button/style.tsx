@@ -23,7 +23,7 @@ export const TextBtn = styled.div.attrs({ className: 'Button__container--text-bt
     list-style: none;
     pointer-events: all;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 500;
 
     &:hover {
