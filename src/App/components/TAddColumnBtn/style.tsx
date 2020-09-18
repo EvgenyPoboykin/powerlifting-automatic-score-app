@@ -5,7 +5,7 @@ export const Container = styled.div.attrs({ className: 'TAddColumnBtn__container
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 100%;
     padding-left: 5px;
     padding-right: 5px;
 
@@ -16,8 +16,8 @@ export const Container = styled.div.attrs({ className: 'TAddColumnBtn__container
 export const Button = styled.button.attrs({ className: 'TAddColumnBtn__container--button' })`
     width: 100%;
     min-width: 60px;
-    height: 30px;
-    font-size: 10px;
+    height: 100%;
+    font-size: 12px;
     font-weight: 500;
     background-color: rgba(0, 0, 0, 0.35);
     color: #a4a4a4;
@@ -26,7 +26,7 @@ export const Button = styled.button.attrs({ className: 'TAddColumnBtn__container
     border-radius: 2px;
     text-transform: uppercase;
 
-    pointer-events: ${(props: IButton) => (props.disabled ? 'all' : 'none')};
+    pointer-events: ${(props: IButton) => (props.disabled ? 'none' : 'all')};
     opacity: ${(props: IButton) => (props.disabled ? '0.7' : '1')};
 
     &:hover {

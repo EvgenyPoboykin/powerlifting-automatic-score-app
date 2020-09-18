@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import {} from './interfaces';
 
 export const Container = styled.div.attrs({ className: 'ButtonArrow__container' })`
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     pointer-events: all;
     opacity: 0.7;
+    padding: 10px;
     &:hover {
         opacity: 1;
     }

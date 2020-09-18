@@ -4,7 +4,6 @@ export const Container = styled.div.attrs({ className: 'TTitle__container' })`
     width: 100%;
     height: 100%;
     cursor: pointer;
-    padding: 10px 15px;
     pointer-events: all;
 
     &:hover {

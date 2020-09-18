@@ -1,7 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { State, Settings, Language_RU, Language_EN } from './state';
-
-const MAX_RANDOM = 1000000000000;
+import { State, Settings, Language_RU, Language_EN, EventTemplate } from './state';
 
 const App_Logic = () => {
     const [state, SetState] = useState(State);
@@ -34,31 +32,7 @@ const App_Logic = () => {
 
     // Logic ${name} START
     const CreateEventAndGoTournament = (value: any) => {
-        let newEvent = {
-            event: value,
-            id: Math.floor(Math.random() * Math.floor(MAX_RANDOM)),
-            date: new Date(),
-            sportsmans: [],
-            label: 'IPF Classic',
-            value: 'IPF-Classic',
-            four: 0,
-            five: 0,
-            setFourBtnActive: 0,
-            setFiveBtnActive: 0,
-            disFourBtn: 0,
-            disFiveBtn: 1,
-            disDelBtn: 1,
-            sq: 0,
-            bp: 0,
-            dl: 0,
-            pss: 1,
-            gsl: 1,
-            ts: 1,
-            title: false,
-            card: 0,
-        };
-
-        // const newEventList = [newEvent, ...state.eventsList];
+        let newEvent = { ...EventTemplate, event: value };
 
         SetState((prev) => ({
             ...prev,
@@ -80,7 +54,11 @@ const App_Logic = () => {
             start: true,
         }));
 
-        SetState((prev) => ({ ...prev, event: {} }));
+        const Event = state.event;
+        const EventListWithoutEvent = state.eventslist.filter((item: any) => item.id !== state.event.id);
+        const newEventsList = [Event, ...EventListWithoutEvent];
+
+        SetState((prev) => ({ ...prev, event: {}, eventslist: newEventsList }));
     };
     const GoToForm = () => {
         SetSettings((prev) => ({

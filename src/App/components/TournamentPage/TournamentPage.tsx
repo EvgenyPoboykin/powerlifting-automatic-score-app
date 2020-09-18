@@ -23,7 +23,7 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
 
                     <TMenu />
 
-                    {state.event && state.event.length > 0 ? <TTopTable /> : null}
+                    {state.event && state.event.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
 
                     {state.event && state.event.length > 0 ? (
                         <TSportsmanList />

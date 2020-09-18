@@ -1,5 +1,7 @@
 import React from 'react';
 
+const MAX_RANDOM = 1000000000000;
+
 interface ISettings {
     lang: boolean;
     start: boolean;
@@ -46,4 +48,28 @@ export interface IProvider {
 
 export const ProviderApp: React.FC<IProvider> = ({ children, value }) => {
     return <ContextApp.Provider value={value}>{children}</ContextApp.Provider>;
+};
+
+export let EventTemplate = {
+    event: '',
+    id: Math.floor(Math.random() * Math.floor(MAX_RANDOM)),
+    date: new Date(),
+    sportsmans: [],
+    label: 'IPF (Classic)',
+    value: 'IPF-Classic',
+    four: false,
+    five: false,
+    setFourBtnActive: false,
+    setFiveBtnActive: false,
+    disFourBtn: false,
+    disFiveBtn: true,
+    disDelBtn: true,
+    sq: false,
+    bp: false,
+    dl: false,
+    pss: true,
+    gsl: true,
+    ts: true,
+    title: false,
+    card: false,
 };

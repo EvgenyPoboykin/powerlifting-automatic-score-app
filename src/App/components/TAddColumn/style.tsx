@@ -4,5 +4,5 @@ import styled from 'styled-components';
 export const Container = styled.div.attrs({ className: 'TAddColumn__container' })`
     display: flex;
     justify-content: flex-start;
-    height: 30px;
+    height: 100%;
 `;
