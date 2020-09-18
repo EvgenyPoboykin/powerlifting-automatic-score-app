@@ -4,7 +4,7 @@ import {} from './interfaces';
 import { ContextApp } from '../../state';
 import Button from '../Button';
 
-const TournamentBottombar: React.FC = memo(() => {
+const TBottombar: React.FC = memo(() => {
     const { state, languages } = useContext(ContextApp);
     return state.event.sportsmans && state.event.sportsmans.length > 0 ? (
         <Container>
@@ -20,4 +20,4 @@ const TournamentBottombar: React.FC = memo(() => {
         <EmptyDiv></EmptyDiv>
     );
 });
-export default TournamentBottombar;
+export default TBottombar;

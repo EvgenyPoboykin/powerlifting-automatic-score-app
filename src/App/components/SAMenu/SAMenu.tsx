@@ -5,7 +5,7 @@ import Button from '../Button';
 import { ContextApp } from '../../state';
 import Input from '../Input';
 
-const StartAppMenu: React.FC = memo(() => {
+const SAMenu: React.FC = memo(() => {
     const [value, SetValue] = useState('');
     const { CreateEventAndGoTournament, languages } = useContext(ContextApp);
 
@@ -37,4 +37,4 @@ const StartAppMenu: React.FC = memo(() => {
         </Container>
     );
 });
-export default StartAppMenu;
+export default SAMenu;

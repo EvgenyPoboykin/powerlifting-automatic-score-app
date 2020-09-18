@@ -1,6 +1,6 @@
 import React, { memo, useContext } from 'react';
 import { Container } from './style';
-// import {} from './interfaces';
+import {} from './interfaces';
 import TAddColumnBtn from '../TAddColumnBtn';
 import { ContextApp } from '../../state';
 

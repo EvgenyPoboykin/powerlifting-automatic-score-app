@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 import { Container } from './style';
-// import {} from './interfaces';
+import {} from './interfaces';
 import TAddColumn from '../TAddColumn';
 
-const TournamentMenu: React.FC = memo(() => {
+const TMenu: React.FC = memo(() => {
     return (
         <Container>
             <TAddColumn />
         </Container>
     );
 });
-export default TournamentMenu;
+export default TMenu;

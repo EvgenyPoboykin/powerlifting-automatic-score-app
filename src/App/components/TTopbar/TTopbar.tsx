@@ -4,7 +4,7 @@ import {} from './interfaces';
 import TTitle from '../TTitle';
 import TLogo from '../TLogo';
 
-const TournamentTopbar: React.FC = memo(() => {
+const TTopbar: React.FC = memo(() => {
     return (
         <Container>
             <Content>
@@ -14,4 +14,4 @@ const TournamentTopbar: React.FC = memo(() => {
         </Container>
     );
 });
-export default TournamentTopbar;
+export default TTopbar;

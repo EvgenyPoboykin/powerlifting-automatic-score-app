@@ -1,26 +1,5 @@
-import StartAppPage from './StartAppPage';
-import AutorsPage from './AutorsPage';
-import TournamentPage from './TournamentPage';
-import FormAddSportsmanPage from './FormAddSportsmanPage';
-import Dialogs from './Dialogs';
 import TopBar from './TopBar';
 import Copyrights from './Copyrights';
 import Layouts from './Layouts';
-import Page from './Page';
-import Button from './Button';
-import ButtonArrow from './ButtonArrow';
-import StartAppMenu from './StartAppMenu';
-import Input from './Input';
-import StartAppListEvents from './StartAppListEvents';
-import StartAppEvent from './StartAppEvent';
-import TournamentTopbar from './TournamentTopbar';
-import TournamentMenu from './TournamentMenu';
-import TournamentTopTable from './TournamentTopTable';
-import TournamentSportsmanList from './TournamentSportsmanList';
-import TournamentSportsmanItem from './TournamentSportsmanItem';
-import TournamentBottombar from './TournamentBottombar';
-import TTitle from './TTitle';
-import TLogo from './TLogo';
-import TAddColumn from './TAddColumn';
-import TAddColumnBtn from './TAddColumnBtn';
-export { StartAppPage, AutorsPage, TournamentPage, FormAddSportsmanPage, Dialogs, TopBar, Copyrights, Layouts, Page, Button, ButtonArrow, StartAppMenu, Input, StartAppListEvents, StartAppEvent, TournamentTopbar, TournamentMenu, TournamentTopTable, TournamentSportsmanList, TournamentSportsmanItem, TournamentBottombar, TTitle, TLogo, TAddColumn, TAddColumnBtn };
+
+export { TopBar, Layouts, Copyrights };

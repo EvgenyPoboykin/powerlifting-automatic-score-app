@@ -3,8 +3,8 @@ import Page from '../Page';
 import { Container, Content } from './style';
 import { IStartAppPage } from './interfaces';
 import { ContextApp } from '../../state';
-import StartAppMenu from '../StartAppMenu';
-import StartAppListEvents from '../StartAppListEvents';
+import SAMenu from '../SAMenu';
+import SAEventsList from '../SAEventsList';
 
 const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
     const { settings, state } = useContext(ContextApp);
@@ -20,8 +20,8 @@ const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
         <Page trigger={settings[name]} inpoint='0%' outpoint='-100%'>
             <Container>
                 <Content grid={grids()}>
-                    <StartAppMenu />
-                    {state.eventslist && state.eventslist.length > 0 ? <StartAppListEvents /> : null}
+                    <SAMenu />
+                    {state.eventslist && state.eventslist.length > 0 ? <SAEventsList /> : null}
                 </Content>
             </Container>
         </Page>

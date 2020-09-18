@@ -5,11 +5,11 @@ import { ITournamentPage } from './interfaces';
 import { ContextApp } from '../../state';
 import ButtonArrow from '../ButtonArrow';
 import Button from '../Button';
-import TournamentTopbar from '../TournamentTopbar';
-import TournamentMenu from '../TournamentMenu';
-import TournamentTopTable from '../TournamentTopTable';
-import TournamentSportsmanList from '../TournamentSportsmanList';
-import TournamentBottombar from '../TournamentBottombar';
+import TTopbar from '../TTopbar';
+import TMenu from '../TMenu';
+import TTopTable from '../TTopTable';
+import TSportsmanList from '../TSportsmanList';
+import TBottombar from '../TBottombar';
 
 const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
     const { settings, GoToStartFromTournament, GoToForm, state, languages } = useContext(ContextApp);
@@ -19,21 +19,21 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
             <Container>
                 <ButtonArrow directional='up' onClick={GoToStartFromTournament} />
                 <ContentPage>
-                    <TournamentTopbar />
+                    <TTopbar />
 
-                    <TournamentMenu />
+                    <TMenu />
 
-                    {state.event && state.event.length > 0 ? <TournamentTopTable /> : null}
+                    {state.event && state.event.length > 0 ? <TTopTable /> : null}
 
                     {state.event && state.event.length > 0 ? (
-                        <TournamentSportsmanList />
+                        <TSportsmanList />
                     ) : (
                         <BtnWrapper>
                             <Button name={languages.add_spostsman} width={280} onClick={GoToForm} />
                         </BtnWrapper>
                     )}
 
-                    <TournamentBottombar />
+                    <TBottombar />
                 </ContentPage>
             </Container>
         </Page>

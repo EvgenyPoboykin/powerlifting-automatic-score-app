@@ -11,7 +11,7 @@ import {
 import { IStartAppEvent } from './interfaces';
 import { ContextApp } from '../../state';
 
-const StartAppEvent: React.FC<IStartAppEvent> = memo(({ item, onClick, onClickDelete }) => {
+const SAEvent: React.FC<IStartAppEvent> = memo(({ item, onClick, onClickDelete }) => {
     const { settings } = useContext(ContextApp);
     const now = new Date(item.date);
 
@@ -41,4 +41,4 @@ const StartAppEvent: React.FC<IStartAppEvent> = memo(({ item, onClick, onClickDe
         </Container>
     );
 });
-export default StartAppEvent;
+export default SAEvent;
