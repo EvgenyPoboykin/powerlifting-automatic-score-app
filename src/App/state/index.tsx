@@ -27,12 +27,14 @@ export const Language_RU = {
     create_event: 'Создать Мероприятие',
     add_spostsman: 'Добавить Спортсмена',
     save_as: 'Сохранить Как',
+    delete_btn: 'УДАЛИТЬ',
 };
 export const Language_EN = {
     event_name: 'Event Name',
     create_event: 'Create Event',
     add_spostsman: 'Add Sportsman',
     save_as: 'Save As',
+    delete_btn: 'DELETE',
 };
 
 export const ContextApp = React.createContext<any>({ State, Settings });

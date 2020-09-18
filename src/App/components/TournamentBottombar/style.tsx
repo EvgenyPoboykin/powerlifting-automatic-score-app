@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IContainer } from './interfaces';
+import {} from './interfaces';
 
 export const Container = styled.div.attrs({ className: 'TournamentBottombar__container' })`
     display: flex;
