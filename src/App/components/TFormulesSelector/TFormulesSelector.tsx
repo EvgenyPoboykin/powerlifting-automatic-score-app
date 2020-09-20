@@ -17,7 +17,9 @@ const formules = [
 
 const TFormulesSelector: React.FC = memo(() => {
     const { state } = useContext(ContextApp);
-    const selectedOption = { label: state.event.label, value: state.event.value };
+    const { event } = state;
+    const { label, value } = event;
+    const selectedOption = { label: label, value: value };
     return <SelectorBox selectedOption={selectedOption} items={formules} selectChange={(item) => console.log(item)} />;
 });
 export default TFormulesSelector;
