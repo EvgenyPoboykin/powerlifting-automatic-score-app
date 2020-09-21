@@ -4,14 +4,14 @@ import plas_logo from './images/plas.svg';
 export const Container = styled.div.attrs({ className: 'TLogo__container' })`
     width: 100%;
     height: 100%;
-    cursor: pointer;
-    pointer-events: all;
+    /* cursor: pointer; */
+    /* pointer-events: all; */
 
-    &:hover {
+    /* &:hover {
         border: 1px solid #ed1c24;
-    }
+    } */
 
-    transition: all 300ms cubic-bezier(0.5, 0, 0, 1);
+    /* transition: all 300ms cubic-bezier(0.5, 0, 0, 1); */
 `;
 export const Content = styled.div.attrs({ className: 'TLogo__container--content' })`
     display: flex;

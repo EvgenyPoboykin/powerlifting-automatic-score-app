@@ -3,10 +3,12 @@ export interface IContainer {
 }
 export interface ITextBtn {
     mode?: string;
+    disabled?: boolean;
 }
 export interface IButton {
     name: string;
-    onClick: () => void;
+    onClick?: () => void;
     width?: number;
     mode?: string;
+    disabled?: boolean;
 }

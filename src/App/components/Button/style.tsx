@@ -21,10 +21,13 @@ export const TextBtn = styled.div.attrs({ className: 'Button__container--text-bt
     cursor: pointer;
     text-decoration: none;
     list-style: none;
-    pointer-events: all;
+
     text-transform: uppercase;
     font-size: 10px;
     font-weight: 500;
+
+    ${(props: ITextBtn) => (props.disabled ? 'pointer-events: none;' : 'pointer-events: all;')}
+    ${(props: ITextBtn) => (props.disabled ? 'opacity: 0.6;' : 'opacity: 1;')}
 
     &:hover {
         border: 0px solid #808080;

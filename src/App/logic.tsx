@@ -5,7 +5,7 @@ const App_Logic = () => {
     const [state, SetState] = useState(State);
     const [settings, SetSettings] = useState(Settings);
     const [languages, SetLanguages] = useState(Language_RU);
-    const [focusinput, SetFocusInput] = useState(false);
+    const [focusinput, SetFocusinput] = useState<boolean>(false);
 
     const ChangeLang = (value: string) => {
         const region = () => {
@@ -18,7 +18,6 @@ const App_Logic = () => {
         } else {
             SetLanguages(Language_RU);
         }
-        console.log(region());
         SetSettings((prev) => ({ ...prev, lang: !settings.lang }));
     };
 
@@ -124,7 +123,7 @@ const App_Logic = () => {
         settings,
         languages,
         focusinput,
-        SetFocusInput,
+        SetFocusinput,
         GoToTournament,
         CreateEventAndGoTournament,
         GoToStartFromTournament,

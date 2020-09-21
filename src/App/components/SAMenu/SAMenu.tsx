@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useState } from 'react';
+import React, { memo, useCallback, useContext, useRef, useState } from 'react';
 import { Container, Logo, Form } from './style';
 import {} from './interfaces';
 import Button from '../Button';
@@ -6,22 +6,19 @@ import { ContextApp } from '../../state';
 import Input from '../Input';
 
 const SAMenu: React.FC = memo(() => {
-    const [value, SetValue] = useState('');
+    const [checkInput, SetCheckInput] = useState<boolean>(true);
     const { CreateEventAndGoTournament, languages } = useContext(ContextApp);
+    const ref = useRef<HTMLInputElement>(null);
 
     const PROXY_CreateEventAndGoTournament = useCallback(() => {
-        CreateEventAndGoTournament(value);
-        SetValue('');
-    }, [value, CreateEventAndGoTournament]);
+        CreateEventAndGoTournament(ref.current!.value);
+        ref.current!.value = '';
+    }, [ref, CreateEventAndGoTournament]);
 
-    const onChange = (value: any) => {
-        SetValue(value);
-    };
-
-    const onKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            CreateEventAndGoTournament(value);
-            SetValue('');
+    const onChange = (value: string) => {
+        console.log(typeof value);
+        if (value !== '') {
+            SetCheckInput(false);
         }
     };
 
@@ -29,10 +26,14 @@ const SAMenu: React.FC = memo(() => {
         <Container>
             <Logo />
             <Form>
-                <Input placeholder={languages.event_name} value={value} onKeyDown={onKeyDown} onChange={onChange} />
-                {value !== '' ? (
-                    <Button name={languages.create_event} mode='red' onClick={PROXY_CreateEventAndGoTournament} />
-                ) : null}
+                <Input placeholder={languages.event_name} inputRef={ref} onChange={onChange} />
+
+                <Button
+                    name={languages.create_event}
+                    mode={checkInput ? '' : 'red'}
+                    onClick={PROXY_CreateEventAndGoTournament}
+                    disabled={checkInput}
+                />
             </Form>
         </Container>
     );

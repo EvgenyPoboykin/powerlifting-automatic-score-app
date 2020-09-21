@@ -8,6 +8,8 @@ export const Container = styled.div.attrs({ className: 'SelectorBox__container' 
     z-index: 50;
     font-size: 12px;
     font-weight: 700;
+    padding-right: 5px;
+    padding-left: 5px;
     text-transform: uppercase;
     cursor: pointer;
 `;

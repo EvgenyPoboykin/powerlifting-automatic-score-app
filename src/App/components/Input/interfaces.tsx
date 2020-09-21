@@ -1,7 +1,8 @@
 export interface IInput {
     placeholder?: string;
-    value: any;
-    onKeyDown: (e: React.KeyboardEvent) => void;
-    onChange: (e: any) => void;
+    inputRef: React.RefObject<HTMLInputElement>;
+    // value: any;
+    // onKeyDown?: (e: React.KeyboardEvent) => void;
+    onChange: (value: string) => void;
 }
 export interface IIContainer {}

@@ -3,16 +3,15 @@ import { Container } from './style';
 import { IInput } from './interfaces';
 import { ContextApp } from '../../state';
 
-const Input: React.FC<IInput> = memo(({ onKeyDown, onChange, value, placeholder }) => {
-    const { SetFocusInput } = useContext(ContextApp);
+const Input: React.FC<IInput> = memo(({ inputRef, placeholder, onChange }) => {
+    const { SetFocusinput } = useContext(ContextApp);
     return (
         <Container
-            onFocus={() => SetFocusInput(true)}
-            onBlur={() => SetFocusInput(false)}
+            onFocus={() => SetFocusinput(true)}
+            onBlur={() => SetFocusinput(false)}
+            ref={inputRef}
             placeholder={placeholder}
-            onKeyDown={onKeyDown}
-            onChange={(e) => onChange(e.target.value)}
-            value={value}
+            onChange={(e) => onChange(e.currentTarget!.value)}
         ></Container>
     );
 });
