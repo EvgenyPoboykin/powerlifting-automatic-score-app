@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useRef, useState } from 'react';
+import React, { memo, useCallback, useContext } from 'react';
 import { Container, Logo, Form } from './style';
 import {} from './interfaces';
 import Button from '../Button';
@@ -6,33 +6,24 @@ import { ContextApp } from '../../state';
 import Input from '../Input';
 
 const SAMenu: React.FC = memo(() => {
-    const [checkInput, SetCheckInput] = useState<boolean>(true);
-    const { CreateEventAndGoTournament, languages } = useContext(ContextApp);
-    const ref = useRef<HTMLInputElement>(null);
+    const { CreateEventAndGoTournament, languages, SAInputRef } = useContext(ContextApp);
 
     const PROXY_CreateEventAndGoTournament = useCallback(() => {
-        CreateEventAndGoTournament(ref.current!.value);
-        ref.current!.value = '';
-    }, [ref, CreateEventAndGoTournament]);
-
-    const onChange = (value: string) => {
-        console.log(typeof value);
-        if (value !== '') {
-            SetCheckInput(false);
-        }
-    };
+        CreateEventAndGoTournament(SAInputRef.current!.value);
+        SAInputRef.current!.value = '';
+    }, [SAInputRef, CreateEventAndGoTournament]);
 
     return (
         <Container>
             <Logo />
             <Form>
-                <Input placeholder={languages.event_name} inputRef={ref} onChange={onChange} />
+                <Input placeholder={languages.event_name} inputRef={SAInputRef} />
 
                 <Button
                     name={languages.create_event}
-                    mode={checkInput ? '' : 'red'}
+                    mode={SAInputRef.current && SAInputRef.current!.value === '' ? '' : 'red'}
                     onClick={PROXY_CreateEventAndGoTournament}
-                    disabled={checkInput}
+                    disabled={SAInputRef.current && SAInputRef.current!.value === '' ? true : false}
                 />
             </Form>
         </Container>

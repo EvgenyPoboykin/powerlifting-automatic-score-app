@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import uuid from 'uuid';
 import { State, Settings, Language_RU, Language_EN, EventTemplate } from './state';
 
 const App_Logic = () => {
@@ -6,6 +7,7 @@ const App_Logic = () => {
     const [settings, SetSettings] = useState(Settings);
     const [languages, SetLanguages] = useState(Language_RU);
     const [focusinput, SetFocusinput] = useState<boolean>(false);
+    const SAInputRef = useRef<HTMLInputElement>(null);
 
     const ChangeLang = (value: string) => {
         const region = () => {
@@ -31,7 +33,7 @@ const App_Logic = () => {
 
     // Logic ${name} START
     const CreateEventAndGoTournament = (value: any) => {
-        let newEvent = { ...EventTemplate, event: value };
+        let newEvent = { ...EventTemplate, event: value, id: uuid.v4() };
 
         SetState((prev) => ({
             ...prev,
@@ -56,6 +58,8 @@ const App_Logic = () => {
         const Event = state.event;
         const EventListWithoutEvent = state.eventslist.filter((item: any) => item.id !== state.event.id);
         const newEventsList = [Event, ...EventListWithoutEvent];
+
+        SAInputRef.current!.value = '';
 
         SetState((prev) => ({ ...prev, event: {}, eventslist: newEventsList }));
     };
@@ -123,6 +127,7 @@ const App_Logic = () => {
         settings,
         languages,
         focusinput,
+        SAInputRef,
         SetFocusinput,
         GoToTournament,
         CreateEventAndGoTournament,

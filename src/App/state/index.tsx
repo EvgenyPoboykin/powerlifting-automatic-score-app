@@ -1,7 +1,5 @@
 import React from 'react';
 
-const MAX_RANDOM = 1000000000000;
-
 interface ISettings {
     lang: boolean;
     start: boolean;
@@ -52,7 +50,7 @@ export const ProviderApp: React.FC<IProvider> = ({ children, value }) => {
 
 export let EventTemplate = {
     event: '',
-    id: Math.floor(Math.random() * Math.floor(MAX_RANDOM)),
+    id: '',
     date: new Date(),
     sportsmans: [],
     label: 'IPF (Classic)',
