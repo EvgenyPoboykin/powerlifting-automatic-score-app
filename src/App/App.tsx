@@ -23,7 +23,7 @@ const App: React.FC = memo(() => {
         onClickDeleteEvent,
         ChangeLang,
     } = App_Logic();
-    console.log(state, settings);
+    console.log(state);
     return (
         <ProviderApp
             value={{

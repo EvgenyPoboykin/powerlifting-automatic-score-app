@@ -1,17 +1,24 @@
 import React, { memo, useContext } from 'react';
 import Page from '../Page';
-import { Container } from './style';
+import { Container, Content, Frame } from './style';
 import { IFormAddSportsmanPage } from './interfaces';
 import { ContextApp } from '../../state';
-import ButtonArrow from '../ButtonArrow';
+import FRadioBtns from '../FRadioBtns';
+import FBottomBtns from '../FBottomBtns';
+import FForm from '../FForm';
 
 const FormAddSportsmanPage: React.FC<IFormAddSportsmanPage> = memo(({ name }) => {
-    const { settings, GoToTournamentFromForm } = useContext(ContextApp);
+    const { settings } = useContext(ContextApp);
     return (
         <Page trigger={settings[name]} inpoint='0%' outpoint='100%'>
             <Container>
-                <div>FormAddSportsmanPage</div>
-                <ButtonArrow directional='up' onClick={GoToTournamentFromForm} />
+                <Content>
+                    <Frame>
+                        <FRadioBtns />
+                        <FForm />
+                        <FBottomBtns />
+                    </Frame>
+                </Content>
             </Container>
         </Page>
     );
