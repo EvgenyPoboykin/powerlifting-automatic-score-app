@@ -10,9 +10,9 @@ const FBottomBtns: React.FC = memo(() => {
     return (
         <Container>
             <Content>
-                <Button name={languages.f_cansel} onClick={GoToTournamentFromForm} />
+                <Button name={languages.form.cansel} onClick={GoToTournamentFromForm} />
                 <Button
-                    name={sportsman && sportsman.sportsmanid !== '' ? languages.f_save : languages.f_save_as}
+                    name={sportsman && sportsman.sportsmanid !== '' ? languages.form.save : languages.form.save_as}
                     onClick={GoToTournamentFromForm}
                 />
             </Content>

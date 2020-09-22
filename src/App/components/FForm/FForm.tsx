@@ -1,12 +1,14 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useContext, useState } from 'react';
 import { Container } from './style';
 import {} from './interfaces';
 import FFormLeftSection from '../FFormLeftSection';
 import FFormRightSection from '../FFormRightSection';
-import { sportsmanInitial } from './sportsmanInitial';
+import { ContextApp } from '../../state';
 
 const FForm: React.FC = memo(() => {
-    const [state, SetState] = useState<any>(sportsmanInitial);
+    const { sportsman } = useContext(ContextApp);
+    const [state, SetState] = useState<any>(sportsman);
+
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.persist();
         SetState((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -15,6 +17,8 @@ const FForm: React.FC = memo(() => {
     const selectChange = (item: any | {}) => {
         SetState((prev: any) => ({ ...prev, gender_label: item.label, gender_value: item.value }));
     };
+
+    console.log(state);
 
     return (
         <Container>

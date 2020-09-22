@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import uuid from 'uuid';
-import { Event, EventsList, Settings, Language_RU, Language_EN, EventTemplate } from './state';
+import { Event, EventsList, Sportsman, Settings, Language_RU, Language_EN, EventTemplate } from './state';
 
 const App_Logic = () => {
     const [event, SetEvent] = useState<any>({});
     const [eventlist, SetEventList] = useState<any>(EventsList);
     const [settings, SetSettings] = useState<any>(Settings);
-    const [sportsman, SetSportsman] = useState<any>({});
+    const [sportsman, SetSportsman] = useState<any>(Sportsman);
     const [languages, SetLanguages] = useState(Language_RU);
     const [focusinput, SetFocusinput] = useState<boolean>(false);
     const SAInputRef = useRef<HTMLInputElement>(null);
@@ -39,7 +39,7 @@ const App_Logic = () => {
 
     // Logic ${name} START
     const CreateEventAndGoTournament = (value: any) => {
-        let newEvent = { ...EventTemplate, event: value, id: uuid.v4() };
+        let newEvent = { ...EventTemplate, event: value, id: uuid.v4(), date: new Date() };
 
         SetEventList([newEvent, ...eventlist]);
         SetEvent(newEvent);
@@ -86,6 +86,8 @@ const App_Logic = () => {
             tournament: true,
             form: false,
         }));
+
+        SetSportsman(Sportsman);
     };
 
     const GoDialog = () => {
@@ -99,7 +101,7 @@ const App_Logic = () => {
         (id: number) => {
             const newEvent = eventlist && eventlist.filter((item: any) => id === item.id);
 
-            SetEvent(newEvent);
+            SetEvent(newEvent[0]);
             GoToTournament();
         },
         [SetEvent, GoToTournament, eventlist]

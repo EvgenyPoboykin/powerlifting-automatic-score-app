@@ -11,4 +11,6 @@ import FForm from './FForm';
 import FFormSection from './FFormSection';
 import FFormLeftSection from './FFormLeftSection';
 import FFormRightSection from './FFormRightSection';
-export { TopBar, Layouts, Copyrights, SelectorBox, TFormulesSelector, FRadioBtns, FRadioBtn, FBottomBtns, FForm, FFormSection, FFormLeftSection, FFormRightSection };
+import FInput from './FInput';
+import FGender from './FGender';
+export { TopBar, Layouts, Copyrights, SelectorBox, TFormulesSelector, FRadioBtns, FRadioBtn, FBottomBtns, FForm, FFormSection, FFormLeftSection, FFormRightSection, FInput, FGender };
