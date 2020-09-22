@@ -9,9 +9,11 @@ export const Container = styled.input.attrs<IIContainer>({ className: 'Input__co
     padding: 10px 12px;
     pointer-events: all;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     user-select: text;
+    width: 100%;
+    height: 35px;
 
     &:hover {
         color: #ed1c24;

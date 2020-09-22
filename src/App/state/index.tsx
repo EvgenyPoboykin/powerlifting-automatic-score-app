@@ -66,6 +66,14 @@ export const Language_RU = {
     f_cansel: 'отмена',
     f_save_as: 'СОХРАНИТЬ ИЗМЕНЕНИЯ',
     f_save: 'ДОБАВИТЬ УЧАСТНИКА',
+    f_first_name: 'ИМЯ',
+    f_last_name: 'ФАМИЛИЯ',
+    f_country: 'СТРАНА',
+    f_city: 'ГОРОД',
+    f_coach: 'ТРЕНЕР',
+    f_team: 'КОМАНДА',
+    gender_male: 'МУЖЧИНА',
+    gender_female: 'ЖЕНЩИНА',
 };
 export const Language_EN = {
     event_name: 'Event Name',
@@ -78,6 +86,14 @@ export const Language_EN = {
     f_cansel: 'cansel',
     f_save_as: 'Save',
     f_save: 'ADD SPORTSMAN',
+    f_first_name: 'FIRST NAME',
+    f_last_name: 'LAST NAME',
+    f_country: 'COUNTRY',
+    f_city: 'CITY',
+    f_coach: 'COACH',
+    f_team: 'TEAM',
+    gender_male: 'MALE',
+    gender_female: 'FEMALE',
 };
 
 export const ContextApp = React.createContext<any>(null);

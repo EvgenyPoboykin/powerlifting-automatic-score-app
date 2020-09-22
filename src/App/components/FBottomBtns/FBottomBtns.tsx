@@ -12,7 +12,7 @@ const FBottomBtns: React.FC = memo(() => {
             <Content>
                 <Button name={languages.f_cansel} onClick={GoToTournamentFromForm} />
                 <Button
-                    name={sportsman.sportsmanid === '' ? languages.f_save : languages.f_save_as}
+                    name={sportsman && sportsman.sportsmanid !== '' ? languages.f_save : languages.f_save_as}
                     onClick={GoToTournamentFromForm}
                 />
             </Content>

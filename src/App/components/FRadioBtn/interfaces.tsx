@@ -3,3 +3,7 @@ export interface IFRadioBtn {
     defaultChecked: boolean;
     defaultValue: string;
 }
+
+export interface IRadio {
+    defaultChecked: boolean;
+}

@@ -3,10 +3,11 @@ import { Container } from './style';
 import { IInput } from './interfaces';
 import { ContextApp } from '../../state';
 
-const Input: React.FC<IInput> = memo(({ inputRef, placeholder, onChange, defaultValue }) => {
+const Input: React.FC<IInput> = memo(({ nameField, inputRef, placeholder, onChange, defaultValue }) => {
     const { SetFocusinput } = useContext(ContextApp);
     return (
         <Container
+            name={nameField}
             onFocus={() => SetFocusinput(true)}
             onBlur={() => SetFocusinput(false)}
             ref={inputRef}

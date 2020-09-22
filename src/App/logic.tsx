@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import uuid from 'uuid';
-import { Event, EventsList, Sportsman, Settings, Language_RU, Language_EN, EventTemplate } from './state';
+import { Event, EventsList, Settings, Language_RU, Language_EN, EventTemplate } from './state';
 
 const App_Logic = () => {
-    const [event, SetEvent] = useState<any>(Event);
+    const [event, SetEvent] = useState<any>({});
     const [eventlist, SetEventList] = useState<any>(EventsList);
     const [settings, SetSettings] = useState<any>(Settings);
-    const [sportsman, SetSportsman] = useState<any>(Sportsman);
+    const [sportsman, SetSportsman] = useState<any>({});
     const [languages, SetLanguages] = useState(Language_RU);
     const [focusinput, SetFocusinput] = useState<boolean>(false);
     const SAInputRef = useRef<HTMLInputElement>(null);
@@ -23,6 +23,10 @@ const App_Logic = () => {
             SetLanguages(Language_RU);
         }
         SetSettings((prev: any) => ({ ...prev, lang: !settings.lang }));
+    };
+
+    const SelectFormulaEvent = (item: any) => {
+        SetEvent((prev: any) => ({ ...prev, label: item.label, value: item.value }));
     };
 
     const GoToTournament = useCallback(() => {
@@ -47,6 +51,14 @@ const App_Logic = () => {
         }));
     };
 
+    const onChangeFormRadioBtn = (e: React.ChangeEvent<HTMLDivElement>) => {
+        if (event.card === 0) {
+            SetEvent((prev: any) => ({ ...prev, card: 1 }));
+        } else {
+            SetEvent((prev: any) => ({ ...prev, card: 0 }));
+        }
+    };
+
     const GoToStartFromTournament = () => {
         SetSettings((prev: any) => ({
             ...prev,
@@ -54,9 +66,8 @@ const App_Logic = () => {
             start: true,
         }));
 
-        const Event = event;
         const EventListWithoutEvent = eventlist.filter((item: any) => item.id !== event.id);
-        const newEventsList = [Event, ...EventListWithoutEvent];
+        const newEventsList = [event, ...EventListWithoutEvent];
 
         SetEvent(Event);
         SetEventList(newEventsList);
@@ -139,6 +150,8 @@ const App_Logic = () => {
         onClickEvent,
         onClickDeleteEvent,
         ChangeLang,
+        onChangeFormRadioBtn,
+        SelectFormulaEvent,
     };
 };
 

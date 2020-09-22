@@ -3,7 +3,6 @@ import {} from './interfaces';
 
 export const Container = styled.div.attrs({ className: 'SelectorBox__container' })`
     width: 100%;
-    height: 100%;
     position: relative;
     z-index: 50;
     font-size: 12px;
@@ -14,7 +13,7 @@ export const Container = styled.div.attrs({ className: 'SelectorBox__container' 
     cursor: pointer;
 `;
 export const SelectBox = styled.div.attrs({ className: 'SelectorBox__container--select-box' })`
-    height: 100%;
+    height: 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +25,7 @@ export const SelectBox = styled.div.attrs({ className: 'SelectorBox__container--
 export const SelectedItem = styled.div.attrs({ className: 'SelectorBox__container--selected-item' })`
     display: flex;
     width: 100%;
-    height: 30px;
+    height: 35px;
     justify-content: center;
     align-items: center;
     color: #9b9b9b;

@@ -24,8 +24,10 @@ const App: React.FC = memo(() => {
         CreateEventAndGoTournament,
         onClickDeleteEvent,
         ChangeLang,
+        onChangeFormRadioBtn,
+        SelectFormulaEvent,
     } = App_Logic();
-    console.log({ event, eventlist });
+    // console.log({ event, eventlist });
     return (
         <ProviderApp
             value={{
@@ -46,6 +48,8 @@ const App: React.FC = memo(() => {
                 CreateEventAndGoTournament,
                 onClickDeleteEvent,
                 ChangeLang,
+                onChangeFormRadioBtn,
+                SelectFormulaEvent,
             }}
         >
             <Container>

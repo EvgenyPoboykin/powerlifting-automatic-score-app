@@ -4,13 +4,15 @@ import { Container, SelectBox, SelectedItem, SelectList, Option, Label } from '.
 import { ISelectorBox } from './interfaces';
 
 const SelectorBox: React.FC<ISelectorBox> = memo(({ selectedOption, items, selectChange }) => {
-    const { showItem, wrapperRef, selectedItem, DropDownArrow, selectItem } = SelectorBox_Logic(selectedOption);
+    const { showItem, wrapperRef, selectedItem, DropDownArrow, selectItem } = SelectorBox_Logic(
+        selectedOption,
+        selectChange
+    );
+
     return (
         <Container>
             <SelectBox>
-                <SelectedItem onClick={DropDownArrow}>
-                    {selectedOption ? selectedOption.label : selectedItem.label}
-                </SelectedItem>
+                <SelectedItem onClick={DropDownArrow}>{selectedItem.label && selectedItem.label}</SelectedItem>
 
                 {showItem ? (
                     <SelectList ref={wrapperRef}>
@@ -18,7 +20,7 @@ const SelectorBox: React.FC<ISelectorBox> = memo(({ selectedOption, items, selec
                             items.map((item: any, index: number) => {
                                 return (
                                     <Option key={index} onClick={() => selectItem(item)}>
-                                        <Label onClick={() => selectChange(item)}>{item.label}</Label>
+                                        <Label>{item.label}</Label>
                                     </Option>
                                 );
                             })}
