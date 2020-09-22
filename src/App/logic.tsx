@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import uuid from 'uuid';
-import { State, Settings, Language_RU, Language_EN, EventTemplate } from './state';
+import { Event, EventsList, Sportsman, Settings, Language_RU, Language_EN, EventTemplate } from './state';
 
 const App_Logic = () => {
-    const [state, SetState] = useState(State);
-    const [settings, SetSettings] = useState(Settings);
+    const [event, SetEvent] = useState<any>(Event);
+    const [eventlist, SetEventList] = useState<any>(EventsList);
+    const [settings, SetSettings] = useState<any>(Settings);
+    const [sportsman, SetSportsman] = useState<any>(Sportsman);
     const [languages, SetLanguages] = useState(Language_RU);
     const [focusinput, SetFocusinput] = useState<boolean>(false);
     const SAInputRef = useRef<HTMLInputElement>(null);
@@ -20,11 +22,11 @@ const App_Logic = () => {
         } else {
             SetLanguages(Language_RU);
         }
-        SetSettings((prev) => ({ ...prev, lang: !settings.lang }));
+        SetSettings((prev: any) => ({ ...prev, lang: !settings.lang }));
     };
 
     const GoToTournament = useCallback(() => {
-        SetSettings((prev) => ({
+        SetSettings((prev: any) => ({
             ...prev,
             tournament: true,
             start: false,
@@ -35,13 +37,10 @@ const App_Logic = () => {
     const CreateEventAndGoTournament = (value: any) => {
         let newEvent = { ...EventTemplate, event: value, id: uuid.v4() };
 
-        SetState((prev) => ({
-            ...prev,
-            eventslist: [newEvent, ...prev.eventslist],
-            event: newEvent,
-        }));
+        SetEventList([newEvent, ...eventlist]);
+        SetEvent(newEvent);
 
-        SetSettings((prev) => ({
+        SetSettings((prev: any) => ({
             ...prev,
             tournament: true,
             start: false,
@@ -49,22 +48,21 @@ const App_Logic = () => {
     };
 
     const GoToStartFromTournament = () => {
-        SetSettings((prev) => ({
+        SetSettings((prev: any) => ({
             ...prev,
             tournament: false,
             start: true,
         }));
 
-        const Event = state.event;
-        const EventListWithoutEvent = state.eventslist.filter((item: any) => item.id !== state.event.id);
+        const Event = event;
+        const EventListWithoutEvent = eventlist.filter((item: any) => item.id !== event.id);
         const newEventsList = [Event, ...EventListWithoutEvent];
 
-        SAInputRef.current!.value = '';
-
-        SetState((prev) => ({ ...prev, event: {}, eventslist: newEventsList }));
+        SetEvent(Event);
+        SetEventList(newEventsList);
     };
     const GoToForm = () => {
-        SetSettings((prev) => ({
+        SetSettings((prev: any) => ({
             ...prev,
             tournament: false,
             form: true,
@@ -72,7 +70,7 @@ const App_Logic = () => {
     };
 
     const GoToTournamentFromForm = () => {
-        SetSettings((prev) => ({
+        SetSettings((prev: any) => ({
             ...prev,
             tournament: true,
             form: false,
@@ -80,7 +78,7 @@ const App_Logic = () => {
     };
 
     const GoDialog = () => {
-        SetSettings((prev) => ({
+        SetSettings((prev: any) => ({
             ...prev,
             dialog: !settings.dialog,
         }));
@@ -88,17 +86,17 @@ const App_Logic = () => {
 
     const onClickEvent = useCallback(
         (id: number) => {
-            const newEvent = state.eventslist && state.eventslist.filter((item: any) => id === item.id);
+            const newEvent = eventlist && eventlist.filter((item: any) => id === item.id);
 
-            SetState((prev) => ({ ...prev, event: newEvent[0] }));
+            SetEvent(newEvent);
             GoToTournament();
         },
-        [SetState, GoToTournament, state.eventslist]
+        [SetEvent, GoToTournament, eventlist]
     );
 
     const onClickDeleteEvent = (id: number) => {
-        const newEventsList = state.eventslist && state.eventslist.filter((item: any) => id !== item.id);
-        SetState((prev) => ({ ...prev, eventslist: newEventsList }));
+        const newEventsList = eventlist && eventlist.filter((item: any) => id !== item.id);
+        SetEventList(newEventsList);
     };
 
     useEffect(() => {
@@ -111,7 +109,8 @@ const App_Logic = () => {
         const eventArray: any = JSON.parse(eventLS);
 
         // if (settingsArray && eventsArray.length 0 && eventArray !== {}) {
-        SetState((prev) => ({ ...prev, eventslist: eventsArray, event: eventArray }));
+        SetEvent(eventArray);
+        SetEventList(eventsArray);
         SetSettings(settingsArray);
         // }
         //  else {
@@ -123,7 +122,9 @@ const App_Logic = () => {
     // Logic ${name} END
 
     return {
-        state,
+        event,
+        eventlist,
+        sportsman,
         settings,
         languages,
         focusinput,

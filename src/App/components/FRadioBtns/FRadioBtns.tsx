@@ -5,14 +5,13 @@ import FRadioBtn from '../FRadioBtn/FRadioBtn';
 import { ContextApp } from '../../state';
 
 const FRadioBtns: React.FC = memo(() => {
-    const { languages, state } = useContext(ContextApp);
-    const { event } = state;
-    const { card } = event;
+    const { languages, event } = useContext(ContextApp);
+
     return (
         <Container>
             <Content>
-                <FRadioBtn name={languages.standart} defaultValue='0' defaultChecked={card === 0} />
-                <FRadioBtn name={languages.pro} defaultValue='1' defaultChecked={card === 1} />
+                <FRadioBtn name={languages.standart} defaultValue='0' defaultChecked={event.card === 0} />
+                <FRadioBtn name={languages.pro} defaultValue='1' defaultChecked={event.card === 1} />
             </Content>
         </Container>
     );

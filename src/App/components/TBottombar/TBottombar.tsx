@@ -5,8 +5,8 @@ import { ContextApp } from '../../state';
 import Button from '../Button';
 
 const TBottombar: React.FC = memo(() => {
-    const { state, languages } = useContext(ContextApp);
-    return state.event.sportsmans && state.event.sportsmans.length > 0 ? (
+    const { event, languages } = useContext(ContextApp);
+    return event.sportsmans && event.sportsmans.length > 0 ? (
         <Container>
             <ContainerFrame>
                 <Bar>

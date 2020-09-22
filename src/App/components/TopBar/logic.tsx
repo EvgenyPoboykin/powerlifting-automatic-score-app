@@ -3,12 +3,12 @@ import { ContextApp } from '../../state';
 const { ipcRenderer } = window.require('electron');
 
 const TopBar_Logic = () => {
-    const { GoDialog, ChangeLang, settings, state, focusinput } = useContext(ContextApp);
+    const { GoDialog, ChangeLang, event, eventlist, settings, focusinput } = useContext(ContextApp);
 
     const SaveDataInLocalStorage = () => {
         return new Promise((resolve) => {
-            localStorage.setItem('event', JSON.stringify(state.event));
-            localStorage.setItem('eventslist', JSON.stringify(state.eventslist));
+            localStorage.setItem('event', JSON.stringify(event));
+            localStorage.setItem('eventslist', JSON.stringify(eventlist));
             localStorage.setItem('settingsapp', JSON.stringify(settings));
             resolve();
         });

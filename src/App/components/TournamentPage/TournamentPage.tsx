@@ -12,7 +12,7 @@ import TSportsmanList from '../TSportsmanList';
 import TBottombar from '../TBottombar';
 
 const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
-    const { settings, GoToStartFromTournament, GoToForm, state, languages } = useContext(ContextApp);
+    const { settings, GoToStartFromTournament, GoToForm, event, languages } = useContext(ContextApp);
 
     return (
         <Page trigger={settings[name]} inpoint='0%' outpoint={settings.form ? '-100%' : '100%'}>
@@ -23,9 +23,9 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
 
                     <TMenu />
 
-                    {state.event && state.event.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
+                    {event.sportsmans && event.sportsmans.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
 
-                    {state.event && state.event.length > 0 ? (
+                    {event.sportsmans && event.sportsmans.length > 0 ? (
                         <TSportsmanList />
                     ) : (
                         <BtnWrapper>

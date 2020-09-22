@@ -7,7 +7,9 @@ import { TopBar, Layouts, Copyrights } from './components';
 
 const App: React.FC = memo(() => {
     const {
-        state,
+        event,
+        eventlist,
+        sportsman,
         settings,
         languages,
         focusinput,
@@ -23,12 +25,14 @@ const App: React.FC = memo(() => {
         onClickDeleteEvent,
         ChangeLang,
     } = App_Logic();
-    console.log(state);
+    console.log({ event, eventlist });
     return (
         <ProviderApp
             value={{
-                state,
+                event,
+                eventlist,
                 settings,
+                sportsman,
                 languages,
                 focusinput,
                 SAInputRef,

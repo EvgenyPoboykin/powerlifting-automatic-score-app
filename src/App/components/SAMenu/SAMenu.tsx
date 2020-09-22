@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext } from 'react';
+import React, { memo, useCallback, useContext, useState } from 'react';
 import { Container, Logo, Form } from './style';
 import {} from './interfaces';
 import Button from '../Button';
@@ -6,24 +6,29 @@ import { ContextApp } from '../../state';
 import Input from '../Input';
 
 const SAMenu: React.FC = memo(() => {
-    const { CreateEventAndGoTournament, languages, SAInputRef } = useContext(ContextApp);
+    const [value, SetValue] = useState<string>('');
+    const { CreateEventAndGoTournament, languages } = useContext(ContextApp);
 
     const PROXY_CreateEventAndGoTournament = useCallback(() => {
-        CreateEventAndGoTournament(SAInputRef.current!.value);
-        SAInputRef.current!.value = '';
-    }, [SAInputRef, CreateEventAndGoTournament]);
+        CreateEventAndGoTournament(value);
+        SetValue('');
+    }, [value, SetValue, CreateEventAndGoTournament]);
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        SetValue(e.target.value);
+    };
 
     return (
         <Container>
             <Logo />
             <Form>
-                <Input placeholder={languages.event_name} inputRef={SAInputRef} />
+                <Input placeholder={languages.event_name} onChange={onChange} defaultValue={value} />
 
                 <Button
                     name={languages.create_event}
-                    mode={SAInputRef.current && SAInputRef.current!.value === '' ? '' : 'red'}
+                    mode={value === '' ? '' : 'red'}
                     onClick={PROXY_CreateEventAndGoTournament}
-                    disabled={SAInputRef.current && SAInputRef.current!.value === '' ? true : false}
+                    disabled={value === '' ? true : false}
                 />
             </Form>
         </Container>

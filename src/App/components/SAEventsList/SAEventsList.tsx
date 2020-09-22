@@ -5,12 +5,12 @@ import { ContextApp } from '../../state';
 import SAEvent from '../SAEvent';
 
 const SAEventsList: React.FC = memo(() => {
-    const { state, onClickEvent, onClickDeleteEvent } = useContext(ContextApp);
+    const { eventlist, onClickEvent, onClickDeleteEvent } = useContext(ContextApp);
 
     return (
         <Container>
-            {state.eventslist &&
-                state.eventslist.map((item: any) => (
+            {eventlist &&
+                eventlist.map((item: any) => (
                     <SAEvent
                         key={item.id}
                         item={item}

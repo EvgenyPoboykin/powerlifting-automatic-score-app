@@ -7,10 +7,10 @@ import SAMenu from '../SAMenu';
 import SAEventsList from '../SAEventsList';
 
 const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
-    const { settings, state } = useContext(ContextApp);
+    const { settings, eventlist } = useContext(ContextApp);
 
     const grids = () => {
-        if (state.eventslist && state.eventslist.length > 0) {
+        if (eventlist && eventlist.length > 0) {
             return 'repeat(2, minmax(450px, 1fr))';
         } else {
             return 'minmax(450px, 1fr)';
@@ -21,7 +21,7 @@ const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
             <Container>
                 <Content grid={grids()}>
                     <SAMenu />
-                    {state.eventslist && state.eventslist.length > 0 ? <SAEventsList /> : null}
+                    {eventlist && eventlist.length > 0 ? <SAEventsList /> : null}
                 </Content>
             </Container>
         </Page>

@@ -52,11 +52,9 @@ export const Settings: ISettings = {
     form: false,
     dialog: false,
 };
-export const State: IContext = {
-    eventslist: [],
-    event: {},
-    sportsman: Sportsman,
-};
+export const Event: {} = {};
+export const EventsList: [] = [];
+
 export const Language_RU = {
     event_name: 'Название Мероприятия',
     create_event: 'Создать Мероприятие',

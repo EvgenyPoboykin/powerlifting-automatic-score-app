@@ -5,8 +5,7 @@ import Button from '../Button';
 import { ContextApp } from '../../state';
 
 const FBottomBtns: React.FC = memo(() => {
-    const { languages, GoToTournamentFromForm, state } = useContext(ContextApp);
-    const { sportsman } = state;
+    const { languages, GoToTournamentFromForm, sportsman } = useContext(ContextApp);
 
     return (
         <Container>
