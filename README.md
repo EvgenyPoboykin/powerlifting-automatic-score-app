@@ -1,4 +1,4 @@
-## Powerlifting Automatic Score 0.5.31 (Standalone)
+## Powerlifting Automatic Score 0.5.31 (Stand-Alone)
 
 Refactoring Powerlifting Automatic Score 0.5.30 use TypeScript and React.Context
 

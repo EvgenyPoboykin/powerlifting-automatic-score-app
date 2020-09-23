@@ -18,6 +18,9 @@ export const Language_RU = {
         team: 'КОМАНДА',
         gender_male: 'МУЖЧИНА',
         gender_female: 'ЖЕНЩИНА',
+        squat: 'ПРИСЕДАНИЯ СО ШТАНГОЙ',
+        bench_press: 'ЖИМ ШТАНГИ ЛЕЖА',
+        deadlift: 'ТЯГА ШТАНГИ',
     },
 };
 export const Language_EN = {
@@ -40,5 +43,8 @@ export const Language_EN = {
         team: 'TEAM',
         gender_male: 'MALE',
         gender_female: 'FEMALE',
+        squat: 'SQUAT',
+        bench_press: 'BENCH PRESS',
+        deadlift: 'DEADLIFT',
     },
 };

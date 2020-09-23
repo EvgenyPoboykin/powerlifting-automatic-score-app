@@ -42,7 +42,7 @@ body {
 body::after {
     position: absolute;
     content: '';
-    background: url(../images/BG.jpg);
+    background: url(../images/BG_2.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

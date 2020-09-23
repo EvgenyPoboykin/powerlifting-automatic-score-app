@@ -52,6 +52,7 @@
         "cross-env": "^7.0.2",
         "electron": "^10.1.1",
         "electron-builder": "^22.8.0",
+        "react-router-dom": "^5.2.0",
         "styled-components": "^5.2.0",
         "uuidv4": "^6.2.3",
         "wait-on": "^5.2.0"

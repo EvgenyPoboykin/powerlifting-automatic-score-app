@@ -52,7 +52,7 @@ export const Option = styled.div.attrs({ className: 'SelectorBox__container--sel
 
     &:hover {
         background-color: #ed1c24;
-        color: #cdcdcd;
+        color: #fff;
     }
 `;
 export const Label = styled.div.attrs({ className: 'SelectorBox__container--select-label' })`
@@ -62,4 +62,8 @@ export const Label = styled.div.attrs({ className: 'SelectorBox__container--sele
     justify-content: center;
     align-items: center;
     pointer-events: all;
+
+    &:hover {
+        color: #fff;
+    }
 `;

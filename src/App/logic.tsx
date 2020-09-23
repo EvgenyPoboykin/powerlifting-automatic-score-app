@@ -26,7 +26,11 @@ const App_Logic = () => {
     };
 
     const SelectFormulaEvent = (item: any) => {
-        SetEvent((prev: any) => ({ ...prev, label: item.label, value: item.value }));
+        if (item.value === 'IPF-Classic-Bench' || item.value === 'IPF-Classic-Bench-Equipped') {
+            SetEvent((prev: any) => ({ ...prev, label: item.label, value: item.value, pss: 0, gsl: 1, ts: 0 }));
+        } else {
+            SetEvent((prev: any) => ({ ...prev, label: item.label, value: item.value, pss: 1, gsl: 1, ts: 1 }));
+        }
     };
 
     const GoToTournament = useCallback(() => {
@@ -116,6 +120,50 @@ const App_Logic = () => {
         SetEventList(newEventsList);
     };
 
+    // onClickT4, onClickT5, onClickDeleteT4T5
+
+    const onClickT4 = () => {
+        SetEvent((prev: any) => ({
+            ...prev,
+            disFourBtn: true,
+            disFiveBtn: false,
+            disDelBtn: false,
+            four: false,
+            five: true,
+        }));
+    };
+    const onClickT5 = () => {
+        SetEvent((prev: any) => ({
+            ...prev,
+            disFourBtn: true,
+            disFiveBtn: true,
+            disDelBtn: false,
+            four: false,
+            five: false,
+        }));
+    };
+    const onClickDeleteT4T5 = () => {
+        if (event.disFiveBtn) {
+            SetEvent((prev: any) => ({
+                ...prev,
+                disFourBtn: true,
+                disFiveBtn: false,
+                disDelBtn: false,
+                four: false,
+                five: true,
+            }));
+        } else {
+            SetEvent((prev: any) => ({
+                ...prev,
+                disFourBtn: false,
+                disFiveBtn: true,
+                disDelBtn: true,
+                four: true,
+                five: true,
+            }));
+        }
+    };
+
     useEffect(() => {
         const settingsLS: any = localStorage.getItem('settingsapp');
         const eventsLS: any = localStorage.getItem('eventslist');
@@ -162,6 +210,9 @@ const App_Logic = () => {
         onChangeFormRadioBtn,
         SelectFormulaEvent,
         ChangeFormGender,
+        onClickT4,
+        onClickT5,
+        onClickDeleteT4T5,
     };
 };
 

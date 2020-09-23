@@ -30,7 +30,9 @@ const SAEvent: React.FC<IStartAppEvent> = memo(({ item, onClick, onClickDelete }
                 <EventItemName onClick={onClick}>
                     {item.event && item.event.length > 70 ? `${item.event.substr(0, 70)}...` : item.event}
                 </EventItemName>
-                <EventItemTimestamp>{settings.lang ? `${eng} / ${timeUSA}` : `${rus} / ${time}`}</EventItemTimestamp>
+                <EventItemTimestamp>
+                    {settings.lang ? `${eng} ( ${timeUSA} )` : `${rus} ( ${time} )`}
+                </EventItemTimestamp>
                 <EventItemDeleteBorder>
                     <EventItemDelete onClick={onClickDelete}>
                         <EventIconDelete></EventIconDelete>

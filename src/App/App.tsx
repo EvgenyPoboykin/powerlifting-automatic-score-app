@@ -28,6 +28,9 @@ const App: React.FC = memo(() => {
         onChangeFormRadioBtn,
         SelectFormulaEvent,
         ChangeFormGender,
+        onClickT4,
+        onClickT5,
+        onClickDeleteT4T5,
     } = App_Logic();
     // console.log({ event, eventlist });
     return (
@@ -54,6 +57,9 @@ const App: React.FC = memo(() => {
                 onChangeFormRadioBtn,
                 SelectFormulaEvent,
                 ChangeFormGender,
+                onClickT4,
+                onClickT5,
+                onClickDeleteT4T5,
             }}
         >
             <Container>
