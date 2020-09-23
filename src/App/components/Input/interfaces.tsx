@@ -4,5 +4,8 @@ export interface IInput {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     defaultValue?: string;
     nameField?: string;
+    disable?: boolean;
 }
-export interface IIContainer {}
+export interface IContainer {
+    disable?: boolean;
+}

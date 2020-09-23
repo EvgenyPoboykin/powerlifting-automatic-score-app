@@ -1,12 +1,35 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import { Container } from './style';
 import { IFInput } from './interfaces';
 import Input from '../Input';
+import { ContextApp } from '../../state';
 
-const FInput: React.FC<IFInput> = memo(({ placeholder, defaultValue, nameField, onChange }) => {
+const FInput: React.FC<IFInput> = memo(({ placeholder, nameField, type, disable }) => {
+    const { sportsman, SetSportsman } = useContext(ContextApp);
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+
+        e.persist();
+        if (type === 'int') {
+            const intValue = parseInt(value);
+            SetSportsman((prev: any) => ({ ...prev, [nameField]: intValue }));
+        } else if (type === 'float') {
+            const floatValue = parseFloat(value);
+            SetSportsman((prev: any) => ({ ...prev, [nameField]: floatValue }));
+        } else {
+            SetSportsman((prev: any) => ({ ...prev, [nameField]: value }));
+        }
+    };
     return (
         <Container>
-            <Input placeholder={placeholder} defaultValue={defaultValue} nameField={nameField} onChange={onChange} />
+            <Input
+                disable={disable}
+                placeholder={placeholder}
+                defaultValue={sportsman[nameField]}
+                nameField={nameField}
+                onChange={onChange}
+            />
         </Container>
     );
 });

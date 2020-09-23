@@ -1,3 +1,1 @@
-export interface IFGender {
-    selectChange: (item: any | {}) => void;
-}
+export interface IFGender {}

@@ -14,6 +14,7 @@ const App: React.FC = memo(() => {
         languages,
         focusinput,
         SAInputRef,
+        SetSportsman,
         SetFocusinput,
         GoToTournament,
         GoToStartFromTournament,
@@ -26,6 +27,7 @@ const App: React.FC = memo(() => {
         ChangeLang,
         onChangeFormRadioBtn,
         SelectFormulaEvent,
+        ChangeFormGender,
     } = App_Logic();
     // console.log({ event, eventlist });
     return (
@@ -38,6 +40,7 @@ const App: React.FC = memo(() => {
                 languages,
                 focusinput,
                 SAInputRef,
+                SetSportsman,
                 SetFocusinput,
                 GoToTournament,
                 GoToStartFromTournament,
@@ -50,6 +53,7 @@ const App: React.FC = memo(() => {
                 ChangeLang,
                 onChangeFormRadioBtn,
                 SelectFormulaEvent,
+                ChangeFormGender,
             }}
         >
             <Container>

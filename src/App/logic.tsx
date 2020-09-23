@@ -80,6 +80,10 @@ const App_Logic = () => {
         }));
     };
 
+    const ChangeFormGender = (item: any | {}) => {
+        SetSportsman((prev: any) => ({ ...prev, gender_label: item.label, gender_value: item.value }));
+    };
+
     const GoToTournamentFromForm = () => {
         SetSettings((prev: any) => ({
             ...prev,
@@ -134,6 +138,8 @@ const App_Logic = () => {
     }, []);
     // Logic ${name} END
 
+    console.log(sportsman);
+
     return {
         event,
         eventlist,
@@ -142,6 +148,7 @@ const App_Logic = () => {
         languages,
         focusinput,
         SAInputRef,
+        SetSportsman,
         SetFocusinput,
         GoToTournament,
         CreateEventAndGoTournament,
@@ -154,6 +161,7 @@ const App_Logic = () => {
         ChangeLang,
         onChangeFormRadioBtn,
         SelectFormulaEvent,
+        ChangeFormGender,
     };
 };
 

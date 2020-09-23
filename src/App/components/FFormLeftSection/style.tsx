@@ -4,7 +4,7 @@ import {} from './interfaces';
 export const Container = styled.div.attrs({ className: 'FFormLeftSection__container' })`
     display: grid;
     font-size: 12px;
-    grid-template-rows: repeat(8, 35px);
+    grid-template-rows: repeat(8, 50px);
     width: 100%;
     grid-gap: 10px;
 `;

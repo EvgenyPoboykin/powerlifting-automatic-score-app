@@ -4,10 +4,10 @@ import { IFGender } from './interfaces';
 import SelectorBox from '../SelectorBox';
 import { ContextApp } from '../../state';
 
-const FGender: React.FC<IFGender> = memo(({ selectChange }) => {
-    const { languages } = useContext(ContextApp);
+const FGender: React.FC<IFGender> = memo(() => {
+    const { languages, sportsman, ChangeFormGender } = useContext(ContextApp);
 
-    const gender = [
+    const genderMap = [
         {
             label: languages.form.gender_male,
             value: 'MEN',
@@ -18,11 +18,16 @@ const FGender: React.FC<IFGender> = memo(({ selectChange }) => {
         },
     ];
 
-    const selectedOption = {
-        label: languages.form.gender_male,
-        value: 'MEN',
+    const getLabel = (value: string) => {
+        if (value === 'MALE') return languages.form.gender_male;
+        return languages.form.gender_female;
     };
 
-    return <SelectorBox selectedOption={selectedOption} items={gender} selectChange={selectChange} />;
+    const selectedOption = {
+        label: getLabel(sportsman.gender_value),
+        value: sportsman.gender_value,
+    };
+
+    return <SelectorBox selectedOption={selectedOption} items={genderMap} selectChange={ChangeFormGender} />;
 });
 export default FGender;
