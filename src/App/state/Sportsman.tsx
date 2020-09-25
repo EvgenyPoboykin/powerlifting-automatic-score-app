@@ -29,4 +29,5 @@ export const Sportsman = {
     personal_result_bp: 0,
     personal_result_dl: 0,
     abs_weight: 0,
+    abs_result: 0,
 };

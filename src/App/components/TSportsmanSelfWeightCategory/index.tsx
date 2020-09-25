@@ -1,0 +1,2 @@
+import TSportsmanSelfWeightCategory from './TSportsmanSelfWeightCategory';
+export default TSportsmanSelfWeightCategory;

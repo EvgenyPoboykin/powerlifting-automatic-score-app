@@ -20,6 +20,9 @@ import TDiscipline from './TDiscipline';
 import TDisciplineOpen from './TDisciplineOpen';
 import TDisciplineClose from './TDisciplineClose';
 import TDisciplineTry from './TDisciplineTry';
+import TSportsmanWeightCategory from './TSportsmanWeightCategory';
+import TSportsmanAgeCategory from './TSportsmanAgeCategory';
+import TSportsmanSelfWeightCategory from './TSportsmanSelfWeightCategory';
 export {
     TopBar,
     Layouts,
@@ -41,4 +44,7 @@ export {
     TDisciplineOpen,
     TDisciplineClose,
     TDisciplineTry,
+    TSportsmanWeightCategory,
+    TSportsmanAgeCategory,
+    TSportsmanSelfWeightCategory,
 };

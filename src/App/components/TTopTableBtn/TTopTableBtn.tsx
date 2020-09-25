@@ -5,7 +5,7 @@ import { ITTopTableBtn } from './interfaces';
 const TTopTableBtn: React.FC<ITTopTableBtn> = memo(({ name, field }) => {
     const Sort = useCallback(() => console.log(field), [field]);
     return (
-        <Container onClick={Sort}>
+        <Container onClick={field !== '' ? Sort : undefined}>
             <Content>{name}</Content>
         </Container>
     );

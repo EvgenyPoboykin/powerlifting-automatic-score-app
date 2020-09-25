@@ -26,7 +26,7 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
                     {event.sportsmans && event.sportsmans.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
 
                     {event.sportsmans && event.sportsmans.length > 0 ? (
-                        <TSportsmanList />
+                        <TSportsmanList sportsmans={event.sportsmans} />
                     ) : (
                         <BtnWrapper>
                             <Button name={languages.add_spostsman} width={280} onClick={GoToForm} />
