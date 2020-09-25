@@ -31,6 +31,8 @@ const App: React.FC = memo(() => {
         onClickT4,
         onClickT5,
         onClickDeleteT4T5,
+        ClickTabOpen,
+        ClickTabClose,
     } = App_Logic();
     // console.log({ event, eventlist });
     return (
@@ -60,6 +62,8 @@ const App: React.FC = memo(() => {
                 onClickT4,
                 onClickT5,
                 onClickDeleteT4T5,
+                ClickTabOpen,
+                ClickTabClose,
             }}
         >
             <Container>

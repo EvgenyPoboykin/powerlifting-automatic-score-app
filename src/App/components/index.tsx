@@ -15,6 +15,11 @@ import FInput from './FInput';
 import FGender from './FGender';
 
 import FTitle from './FTitle';
+import TTopTableBtn from './TTopTableBtn';
+import TDiscipline from './TDiscipline';
+import TDisciplineOpen from './TDisciplineOpen';
+import TDisciplineClose from './TDisciplineClose';
+import TDisciplineTry from './TDisciplineTry';
 export {
     TopBar,
     Layouts,
@@ -31,4 +36,9 @@ export {
     FInput,
     FGender,
     FTitle,
+    TTopTableBtn,
+    TDiscipline,
+    TDisciplineOpen,
+    TDisciplineClose,
+    TDisciplineTry,
 };

@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import uuid from 'uuid';
 import { Event, EventsList, Sportsman, Settings, Language_RU, Language_EN, EventTemplate } from './state';
+import { eventListDummy } from './dummy';
 
 const App_Logic = () => {
     const [event, SetEvent] = useState<any>({});
-    const [eventlist, SetEventList] = useState<any>(EventsList);
+    const [eventlist, SetEventList] = useState<any>(eventListDummy);
     const [settings, SetSettings] = useState<any>(Settings);
     const [sportsman, SetSportsman] = useState<any>(Sportsman);
     const [languages, SetLanguages] = useState(Language_RU);
@@ -164,6 +165,19 @@ const App_Logic = () => {
         }
     };
 
+    const ClickTabOpen = (name: string) => {
+        if (name === 'sq') {
+            SetEvent((prev: any) => ({ ...prev, sq: true, bp: false, dl: false }));
+        } else if (name === 'bp') {
+            SetEvent((prev: any) => ({ ...prev, sq: false, bp: true, dl: false }));
+        } else {
+            SetEvent((prev: any) => ({ ...prev, sq: false, bp: false, dl: true }));
+        }
+    };
+    const ClickTabClose = (name: string) => {
+        SetEvent((prev: any) => ({ ...prev, [name]: false }));
+    };
+
     useEffect(() => {
         const settingsLS: any = localStorage.getItem('settingsapp');
         const eventsLS: any = localStorage.getItem('eventslist');
@@ -175,7 +189,7 @@ const App_Logic = () => {
 
         // if (settingsArray && eventsArray.length 0 && eventArray !== {}) {
         SetEvent(eventArray);
-        SetEventList(eventsArray);
+        // SetEventList(eventsArray);
         SetSettings(settingsArray);
         // }
         //  else {
@@ -186,7 +200,7 @@ const App_Logic = () => {
     }, []);
     // Logic ${name} END
 
-    console.log(sportsman);
+    console.log(event);
 
     return {
         event,
@@ -213,6 +227,8 @@ const App_Logic = () => {
         onClickT4,
         onClickT5,
         onClickDeleteT4T5,
+        ClickTabOpen,
+        ClickTabClose,
     };
 };
 

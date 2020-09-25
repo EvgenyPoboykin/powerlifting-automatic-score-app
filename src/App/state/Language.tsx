@@ -6,6 +6,8 @@ export const Language_RU = {
     delete_btn: 'УДАЛИТЬ',
     standart: 'СТАНДАРТНО',
     pro: 'ПРО',
+    list: 'список спортсменов',
+    result: 'результат',
     form: {
         cansel: 'отмена',
         save_as: 'СОХРАНИТЬ ИЗМЕНЕНИЯ',
@@ -31,6 +33,8 @@ export const Language_EN = {
     delete_btn: 'DELETE',
     standart: 'STANDART',
     pro: 'PRO',
+    list: 'sportsmans data',
+    result: 'result',
     form: {
         cansel: 'cansel',
         save_as: 'Save',
