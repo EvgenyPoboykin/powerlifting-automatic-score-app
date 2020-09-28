@@ -4,7 +4,7 @@ import {} from './interfaces';
 import SelectorBox from '../SelectorBox';
 import { ContextApp } from '../../state';
 
-const formules = [
+const Formulas = [
     { label: 'IPF (Classic)', value: 'IPF-Classic' },
     { label: 'IPF (Classic Bench)', value: 'IPF-Classic-Bench' },
     { label: 'IPF (Classic Equipped)', value: 'IPF-Classic-Equipped' },
@@ -15,11 +15,11 @@ const formules = [
     { label: 'Schwartz / Malone', value: 'Schwartz-Malone' },
 ];
 
-const TFormulesSelector: React.FC = memo(() => {
+const TFormulasSelector: React.FC = memo(() => {
     const { event, SelectFormulaEvent } = useContext(ContextApp);
 
     const selectedOption = { label: event.label, value: event.value };
 
-    return <SelectorBox selectedOption={selectedOption} items={formules} selectChange={SelectFormulaEvent} />;
+    return <SelectorBox selectedOption={selectedOption} items={Formulas} selectChange={SelectFormulaEvent} />;
 });
-export default TFormulesSelector;
+export default TFormulasSelector;

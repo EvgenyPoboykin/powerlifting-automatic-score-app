@@ -3,7 +3,7 @@
     "version": "0.5.31",
     "private": true,
     "dependencies": {
-        "@evgenypoboykin/crc-cli": "^1.0.9",
+        "@evgenypoboykin/crc-cli": "^1.0.12",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",

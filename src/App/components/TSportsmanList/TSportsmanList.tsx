@@ -1,18 +1,13 @@
 import React, { memo } from 'react';
-import { Container, Wrapper } from './style';
+import {} from './style';
 import { ITSportsmanList } from './interfaces';
-import TSportsmanItem from '../TSportsmanItem';
+
+import TTableItem from '../TTableItem';
 
 const TSportsmanList: React.FC<ITSportsmanList> = memo(({ sportsmans }) => {
     return (
         sportsmans &&
-        sportsmans.map((sportsman: any) => (
-            <Container key={sportsman.sportsmanid}>
-                <Wrapper>
-                    <TSportsmanItem sportsman={sportsman} />
-                </Wrapper>
-            </Container>
-        ))
+        sportsmans.map((sportsman: any) => <TTableItem key={sportsman.sportsmanid} sportsman={sportsman} />)
     );
 });
 export default TSportsmanList;

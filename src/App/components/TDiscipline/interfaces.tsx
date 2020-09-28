@@ -4,4 +4,6 @@ export interface IContainer {
 export interface ITDiscipline {
     discipline: string;
     show: string;
+    type?: string;
+    data?: any;
 }

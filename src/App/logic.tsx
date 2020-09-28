@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import uuid from 'uuid';
-import { Event, EventsList, Sportsman, Settings, Language_RU, Language_EN, EventTemplate } from './state';
+import { Event, Sportsman, Settings, Language_RU, Language_EN, EventTemplate } from './state';
 import { eventListDummy } from './dummy';
+
+// EventsList
 
 const App_Logic = () => {
     const [event, SetEvent] = useState<any>({});
@@ -180,11 +182,11 @@ const App_Logic = () => {
 
     useEffect(() => {
         const settingsLS: any = localStorage.getItem('settingsapp');
-        const eventsLS: any = localStorage.getItem('eventslist');
+        // const eventsLS: any = localStorage.getItem('eventslist');
         const eventLS: any = localStorage.getItem('event');
 
         const settingsArray: any = JSON.parse(settingsLS);
-        const eventsArray: any = JSON.parse(eventsLS);
+        // const eventsArray: any = JSON.parse(eventsLS);
         const eventArray: any = JSON.parse(eventLS);
 
         // if (settingsArray && eventsArray.length 0 && eventArray !== {}) {

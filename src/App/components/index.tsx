@@ -3,7 +3,6 @@ import Copyrights from './Copyrights';
 import Layouts from './Layouts';
 
 import SelectorBox from './SelectorBox';
-import TFormulesSelector from './TFormulesSelector';
 import FRadioBtns from './FRadioBtns';
 import FRadioBtn from './FRadioBtn';
 import FBottomBtns from './FBottomBtns';
@@ -23,28 +22,8 @@ import TDisciplineTry from './TDisciplineTry';
 import TSportsmanWeightCategory from './TSportsmanWeightCategory';
 import TSportsmanAgeCategory from './TSportsmanAgeCategory';
 import TSportsmanSelfWeightCategory from './TSportsmanSelfWeightCategory';
-export {
-    TopBar,
-    Layouts,
-    Copyrights,
-    SelectorBox,
-    TFormulesSelector,
-    FRadioBtns,
-    FRadioBtn,
-    FBottomBtns,
-    FForm,
-    FFormSection,
-    FFormLeftSection,
-    FFormRightSection,
-    FInput,
-    FGender,
-    FTitle,
-    TTopTableBtn,
-    TDiscipline,
-    TDisciplineOpen,
-    TDisciplineClose,
-    TDisciplineTry,
-    TSportsmanWeightCategory,
-    TSportsmanAgeCategory,
-    TSportsmanSelfWeightCategory,
-};
+
+import TTableItem from './TTableItem';
+import TTableItemTabName from './TTableItemTabName';
+import TDisciplineSpostsman from './TDisciplineSpostsman';
+export { TopBar, Layouts, Copyrights, SelectorBox, FRadioBtns, FRadioBtn, FBottomBtns, FForm, FFormSection, FFormLeftSection, FFormRightSection, FInput, FGender, FTitle, TTopTableBtn, TDiscipline, TDisciplineOpen, TDisciplineClose, TDisciplineTry, TSportsmanWeightCategory, TSportsmanAgeCategory, TSportsmanSelfWeightCategory, TTableItem, TTableItemTabName, TDisciplineSpostsman };

@@ -15,8 +15,8 @@ export const Container = styled.div.attrs({ className: 'TTopTable__container' })
     padding: 0px;
     width: 100%;
 `;
-export const SoprtsmansTabContainer = styled.div.attrs({
-    className: 'TTopTable__container--sportsmans-tab-container',
+export const SportsmansTabContainer = styled.div.attrs({
+    className: 'TTopTable__container--sportsman-tab-container',
 })`
     display: grid;
     grid-template-columns: minmax(250px, 1fr);
@@ -25,7 +25,7 @@ export const SoprtsmansTabContainer = styled.div.attrs({
     height: 100%;
     position: relative;
 `;
-export const SoprtsmansTabName = styled.div.attrs({ className: 'TTopTable__container--sportsmans-tab-name' })`
+export const SportsmansTabName = styled.div.attrs({ className: 'TTopTable__container--sportsman-tab-name' })`
     display: flex;
     align-items: center;
     padding-left: 30px;

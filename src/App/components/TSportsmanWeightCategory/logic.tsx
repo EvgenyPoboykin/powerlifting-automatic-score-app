@@ -1,5 +1,4 @@
 const weightCategoryFormula = (weight: number, gender: string, value: string) => {
-    let weightcategory;
     if (
         value === 'IPF-Classic' ||
         value === 'IPF-Classic-Bench' ||
