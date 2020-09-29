@@ -1,7 +1,7 @@
 export const Language_RU = {
     event_name: 'Название Мероприятия',
     create_event: 'Создать Мероприятие',
-    add_spostsman: 'Добавить Спортсмена',
+    add_athlete: 'Добавить Спортсмена',
     save_as: 'Сохранить Как',
     delete_btn: 'УДАЛИТЬ',
     standart: 'СТАНДАРТНО',
@@ -28,7 +28,7 @@ export const Language_RU = {
 export const Language_EN = {
     event_name: 'Event Name',
     create_event: 'Create Event',
-    add_spostsman: 'Add Sportsman',
+    add_athlete: 'Add Sportsman',
     save_as: 'Save As',
     delete_btn: 'DELETE',
     standart: 'STANDART',

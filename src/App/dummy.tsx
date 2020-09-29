@@ -3,9 +3,9 @@ export const eventListDummy = [
         event: 'Test Tournument',
         id: '2',
         date: '20 20 2020',
-        sportsmans: [
+        athletesList: [
             {
-                sportsmanid: '1',
+                id: '1',
                 firstName: 'Evgeny',
                 lastName: 'Poboykin',
                 gender_label: 'МУЖЧИНА',
@@ -38,7 +38,7 @@ export const eventListDummy = [
                 abs_result: 0,
             },
             {
-                sportsmanid: '2',
+                id: '2',
                 firstName: 'Buum',
                 lastName: 'Chololaca',
                 gender_label: 'ЖЕНЩИНА',

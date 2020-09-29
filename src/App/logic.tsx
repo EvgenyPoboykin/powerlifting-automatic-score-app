@@ -1,15 +1,25 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import uuid from 'uuid';
-import { Event, Sportsman, Settings, Language_RU, Language_EN, EventTemplate } from './state';
+// import uuid from 'uuid';
+import {
+    Event,
+    Athlete,
+    Settings,
+    Language_RU,
+    Language_EN,
+    EventTemplate,
+    IEventTemplate,
+    ISettings,
+    IAthlete,
+} from './state';
 import { eventListDummy } from './dummy';
 
 // EventsList
 
 const App_Logic = () => {
-    const [event, SetEvent] = useState<any>({});
-    const [eventlist, SetEventList] = useState<any>(eventListDummy);
-    const [settings, SetSettings] = useState<any>(Settings);
-    const [sportsman, SetSportsman] = useState<any>(Sportsman);
+    const [event, SetEvent] = useState<IEventTemplate>(EventTemplate);
+    const [eventlist, SetEventList] = useState<IEventTemplate[]>(eventListDummy);
+    const [settings, SetSettings] = useState<ISettings>(Settings);
+    const [athlete, SetAthlete] = useState<IAthlete>(Athlete);
     const [languages, SetLanguages] = useState(Language_RU);
     const [focusinput, SetFocusinput] = useState<boolean>(false);
     const SAInputRef = useRef<HTMLInputElement>(null);
@@ -46,7 +56,7 @@ const App_Logic = () => {
 
     // Logic ${name} START
     const CreateEventAndGoTournament = (value: any) => {
-        let newEvent = { ...EventTemplate, event: value, id: uuid.v4(), date: new Date() };
+        let newEvent = { ...EventTemplate, event: value, id: 'uuid.v4()', date: new Date() };
 
         SetEventList([newEvent, ...eventlist]);
         SetEvent(newEvent);
@@ -88,7 +98,7 @@ const App_Logic = () => {
     };
 
     const ChangeFormGender = (item: any | {}) => {
-        SetSportsman((prev: any) => ({ ...prev, gender_label: item.label, gender_value: item.value }));
+        SetAthlete((prev: any) => ({ ...prev, gender_label: item.label, gender_value: item.value }));
     };
 
     const GoToTournamentFromForm = () => {
@@ -98,7 +108,7 @@ const App_Logic = () => {
             form: false,
         }));
 
-        SetSportsman(Sportsman);
+        SetAthlete(Athlete);
     };
 
     const GoDialog = () => {
@@ -207,12 +217,12 @@ const App_Logic = () => {
     return {
         event,
         eventlist,
-        sportsman,
+        athlete,
         settings,
         languages,
         focusinput,
         SAInputRef,
-        SetSportsman,
+        SetAthlete,
         SetFocusinput,
         GoToTournament,
         CreateEventAndGoTournament,

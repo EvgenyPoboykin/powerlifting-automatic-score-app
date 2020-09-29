@@ -1,10 +1,4 @@
-interface ISettings {
-    lang: boolean;
-    start: boolean;
-    tournament: boolean;
-    form: boolean;
-    dialog: boolean;
-}
+import { ISettings } from './interfaces';
 
 export const Settings: ISettings = {
     lang: false,

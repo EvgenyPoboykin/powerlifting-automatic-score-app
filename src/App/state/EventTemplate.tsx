@@ -1,8 +1,10 @@
-export const EventTemplate = {
+import { IEventTemplate } from './interfaces';
+
+export const EventTemplate: IEventTemplate = {
     event: '',
     id: '',
     date: null,
-    sportsmans: [],
+    athletesList: [],
     label: 'IPF (Classic)',
     value: 'IPF-Classic',
     four: true,

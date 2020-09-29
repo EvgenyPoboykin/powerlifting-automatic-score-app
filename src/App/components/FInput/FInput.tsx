@@ -5,7 +5,7 @@ import Input from '../Input';
 import { ContextApp } from '../../state';
 
 const FInput: React.FC<IFInput> = memo(({ placeholder, nameField, type, disable }) => {
-    const { sportsman, SetSportsman } = useContext(ContextApp);
+    const { athlete, SetAthlete } = useContext(ContextApp);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -13,12 +13,12 @@ const FInput: React.FC<IFInput> = memo(({ placeholder, nameField, type, disable 
         e.persist();
         if (type === 'int') {
             const intValue = parseInt(value);
-            SetSportsman((prev: any) => ({ ...prev, [nameField]: intValue }));
+            SetAthlete((prev: any) => ({ ...prev, [nameField]: intValue }));
         } else if (type === 'float') {
             const floatValue = parseFloat(value);
-            SetSportsman((prev: any) => ({ ...prev, [nameField]: floatValue }));
+            SetAthlete((prev: any) => ({ ...prev, [nameField]: floatValue }));
         } else {
-            SetSportsman((prev: any) => ({ ...prev, [nameField]: value }));
+            SetAthlete((prev: any) => ({ ...prev, [nameField]: value }));
         }
     };
     return (
@@ -26,7 +26,7 @@ const FInput: React.FC<IFInput> = memo(({ placeholder, nameField, type, disable 
             <Input
                 disable={disable}
                 placeholder={placeholder}
-                defaultValue={sportsman[nameField]}
+                defaultValue={athlete[nameField]}
                 nameField={nameField}
                 onChange={onChange}
             />

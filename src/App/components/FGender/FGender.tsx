@@ -5,7 +5,7 @@ import SelectorBox from '../SelectorBox';
 import { ContextApp } from '../../state';
 
 const FGender: React.FC<IFGender> = memo(() => {
-    const { languages, sportsman, ChangeFormGender } = useContext(ContextApp);
+    const { languages, athlete, ChangeFormGender } = useContext(ContextApp);
 
     const genderMap = [
         {
@@ -24,8 +24,8 @@ const FGender: React.FC<IFGender> = memo(() => {
     };
 
     const selectedOption = {
-        label: getLabel(sportsman.gender_value),
-        value: sportsman.gender_value,
+        label: getLabel(athlete.gender_value),
+        value: athlete.gender_value,
     };
 
     return <SelectorBox selectedOption={selectedOption} items={genderMap} selectChange={ChangeFormGender} />;

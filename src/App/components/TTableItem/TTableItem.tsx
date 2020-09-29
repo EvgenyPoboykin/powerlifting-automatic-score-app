@@ -8,22 +8,21 @@ import {
     Content,
     Disciplines,
 } from './style';
-import TSportsmanWeightCategory from '../TSportsmanWeightCategory';
-import TSportsmanSelfWeightCategory from '../TSportsmanSelfWeightCategory';
+import TAthleteWeightCategory from '../TAthleteWeightCategory';
+import TAthleteData from '../TAthleteData';
 import TTableItemTabName from '../TTableItemTabName';
 import { ITTableItem } from './interfaces';
 import { ContextApp } from '../../state';
-import TSportsmanAgeCategory from '../TSportsmanAgeCategory';
-import TDiscipline from '../TDiscipline';
+import TAthleteAgeCategory from '../TAthleteAgeCategory';
+import TAthleteDiscipline from '../TAthleteDiscipline';
 
-const TTableItem: React.FC<ITTableItem> = memo(({ sportsman }) => {
-    const genderValue = sportsman && sportsman.gender_value;
-    console.log(genderValue);
+const TTableItem: React.FC<ITTableItem> = memo(({ athlete }) => {
+    const genderValue = athlete && athlete.gender_value;
+
     const { languages, event } = useContext(ContextApp);
 
     const gritWidth = { sq: event.sq, bp: event.bp, dl: event.dl };
 
-    console.log({ pss: event.sq, gsl: event.gsl, ts: event.ts });
     return (
         <Container gender={genderValue}>
             <ContainerSportsman>
@@ -31,7 +30,7 @@ const TTableItem: React.FC<ITTableItem> = memo(({ sportsman }) => {
                     <Gender gender={genderValue}></Gender>
                     {genderValue ? (
                         <ContainerSportsmanDataName gender={genderValue}>
-                            {sportsman.firstName} {sportsman.lastName}
+                            {athlete.firstName} {athlete.lastName}
                         </ContainerSportsmanDataName>
                     ) : (
                         <ContainerSportsmanDataName gender={genderValue}>{languages.list}</ContainerSportsmanDataName>
@@ -42,20 +41,16 @@ const TTableItem: React.FC<ITTableItem> = memo(({ sportsman }) => {
             <Content>
                 {genderValue ? (
                     <>
-                        <TSportsmanWeightCategory
-                            gender={genderValue}
-                            weight={sportsman.selfWeight}
-                            value={event.value}
-                        />
-                        <TSportsmanSelfWeightCategory weight={sportsman.selfWeight} />
-                        <TSportsmanAgeCategory age={sportsman.bornYear} />
+                        <TAthleteWeightCategory gender={genderValue} weight={athlete.selfWeight} value={event.value} />
+                        <TAthleteData data={athlete.selfWeight} />
+                        <TAthleteAgeCategory age={athlete.bornYear} />
                         <Disciplines gritWidth={gritWidth}>
-                            <TDiscipline discipline='pss' show='sq' data={sportsman} />
-                            <TDiscipline discipline='gsl' show='bp' data={sportsman} />
-                            <TDiscipline discipline='ts' show='dl' data={sportsman} />
+                            <TAthleteDiscipline discipline='pss' show='sq' data={athlete} />
+                            <TAthleteDiscipline discipline='gsl' show='bp' data={athlete} />
+                            <TAthleteDiscipline discipline='ts' show='dl' data={athlete} />
                         </Disciplines>
-                        <TSportsmanSelfWeightCategory weight={sportsman.abs_weight} />
-                        <TSportsmanSelfWeightCategory weight={sportsman.abs_result} />
+                        <TAthleteData data={athlete.abs_weight} />
+                        <TAthleteData data={athlete.abs_result} />
                     </>
                 ) : (
                     <>
@@ -63,9 +58,9 @@ const TTableItem: React.FC<ITTableItem> = memo(({ sportsman }) => {
                         <TTableItemTabName name='SW' />
                         <TTableItemTabName name='AC' />
                         <Disciplines gritWidth={gritWidth}>
-                            <TDiscipline type={'toptable'} discipline='pss' show='sq' />
-                            <TDiscipline type={'toptable'} discipline='gsl' show='bp' />
-                            <TDiscipline type={'toptable'} discipline='ts' show='dl' />
+                            <TAthleteDiscipline type={'toptable'} discipline='pss' show='sq' />
+                            <TAthleteDiscipline type={'toptable'} discipline='gsl' show='bp' />
+                            <TAthleteDiscipline type={'toptable'} discipline='ts' show='dl' />
                         </Disciplines>
                         <TTableItemTabName name='AbsW' />
                         <TTableItemTabName name={languages.result.toUpperCase()} />

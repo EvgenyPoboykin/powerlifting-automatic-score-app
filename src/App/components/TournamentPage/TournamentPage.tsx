@@ -8,7 +8,7 @@ import Button from '../Button';
 import TTopbar from '../TTopbar';
 import TMenu from '../TMenu';
 import TTopTable from '../TTopTable';
-import TSportsmanList from '../TSportsmanList';
+import TAthleteList from '../TAthleteList';
 import TBottombar from '../TBottombar';
 
 const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
@@ -23,13 +23,13 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
 
                     <TMenu />
 
-                    {event.sportsmans && event.sportsmans.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
+                    {event.athletesList && event.athletesList.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
 
-                    {event.sportsmans && event.sportsmans.length > 0 ? (
-                        <TSportsmanList sportsmans={event.sportsmans} />
+                    {event.athletesList && event.athletesList.length > 0 ? (
+                        <TAthleteList athletesList={event.athletesList} />
                     ) : (
                         <BtnWrapper>
-                            <Button name={languages.add_spostsman} width={280} onClick={GoToForm} />
+                            <Button name={languages.add_athlete} width={280} onClick={GoToForm} />
                         </BtnWrapper>
                     )}
 
