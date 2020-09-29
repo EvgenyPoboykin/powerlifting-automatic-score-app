@@ -26,4 +26,31 @@ import TSportsmanSelfWeightCategory from './TSportsmanSelfWeightCategory';
 import TTableItem from './TTableItem';
 import TTableItemTabName from './TTableItemTabName';
 import TDisciplineSpostsman from './TDisciplineSpostsman';
-export { TopBar, Layouts, Copyrights, SelectorBox, FRadioBtns, FRadioBtn, FBottomBtns, FForm, FFormSection, FFormLeftSection, FFormRightSection, FInput, FGender, FTitle, TTopTableBtn, TDiscipline, TDisciplineOpen, TDisciplineClose, TDisciplineTry, TSportsmanWeightCategory, TSportsmanAgeCategory, TSportsmanSelfWeightCategory, TTableItem, TTableItemTabName, TDisciplineSpostsman };
+
+export {
+    TopBar,
+    Layouts,
+    Copyrights,
+    SelectorBox,
+    FRadioBtns,
+    FRadioBtn,
+    FBottomBtns,
+    FForm,
+    FFormSection,
+    FFormLeftSection,
+    FFormRightSection,
+    FInput,
+    FGender,
+    FTitle,
+    TTopTableBtn,
+    TDiscipline,
+    TDisciplineOpen,
+    TDisciplineClose,
+    TDisciplineTry,
+    TSportsmanWeightCategory,
+    TSportsmanAgeCategory,
+    TSportsmanSelfWeightCategory,
+    TTableItem,
+    TTableItemTabName,
+    TDisciplineSpostsman,
+};

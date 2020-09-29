@@ -3,7 +3,7 @@
     "version": "0.5.31",
     "private": true,
     "dependencies": {
-        "@evgenypoboykin/crc-cli": "^1.0.12",
+        "@evgenypoboykin/crc-cli": "^1.0.13",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
@@ -27,7 +27,7 @@
         "mac": "yarn r-build && electron-builder --mac",
         "win": "yarn r-build && electron-builder --win --ia32 --x64",
         "lnx": "npm run r-build && electron-builder --linux",
-        "start": "ELECTRON_DEVELOPMENT_MODE=1  concurrently \"cross-env BROWSER=none yarn r-start\" \"wait-on http://localhost:3000 && yarn electron-start\"",
+        "start": "ELECTRON_DEVELOPMENT_MODE=1 ELECTRON_DEVELOPMENT=1 concurrently \"cross-env BROWSER=none yarn r-start\" \"wait-on http://localhost:3000 && yarn electron-start\"",
         "build_all": "yarn r-build && electron-builder --win --ia32 --x64 --mac --linux"
     },
     "eslintConfig": {
