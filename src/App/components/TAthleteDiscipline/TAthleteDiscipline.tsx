@@ -19,8 +19,6 @@ const TAthleteDiscipline: React.FC<ITAthleteDiscipline> = memo(({ discipline, sh
         }
     };
 
-    console.log(data);
-
     const Sort = (name: string) => {};
 
     const GenerateFields = () => {

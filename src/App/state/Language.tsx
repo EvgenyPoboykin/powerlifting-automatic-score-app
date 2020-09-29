@@ -1,17 +1,19 @@
-export const Language_RU = {
+import { ILanguage } from './interfaces';
+
+export const Language_RU: ILanguage = {
     event_name: 'Название Мероприятия',
     create_event: 'Создать Мероприятие',
     add_athlete: 'Добавить Спортсмена',
     save_as: 'Сохранить Как',
     delete_btn: 'УДАЛИТЬ',
-    standart: 'СТАНДАРТНО',
+    standard: 'СТАНДАРТНО',
     pro: 'ПРО',
     list: 'список спортсменов',
     result: 'результат',
     form: {
-        cansel: 'отмена',
-        save_as: 'СОХРАНИТЬ ИЗМЕНЕНИЯ',
-        save: 'ДОБАВИТЬ УЧАСТНИКА',
+        cancel: 'отмена',
+        save_changes: 'СОХРАНИТЬ ИЗМЕНЕНИЯ',
+        save_add: 'ДОБАВИТЬ УЧАСТНИКА',
         first_name: 'ИМЯ',
         last_name: 'ФАМИЛИЯ',
         country: 'СТРАНА',
@@ -22,23 +24,23 @@ export const Language_RU = {
         gender_female: 'ЖЕНЩИНА',
         squat: 'ПРИСЕДАНИЯ СО ШТАНГОЙ',
         bench_press: 'ЖИМ ШТАНГИ ЛЕЖА',
-        deadlift: 'ТЯГА ШТАНГИ',
+        dead_lift: 'ТЯГА ШТАНГИ',
     },
 };
-export const Language_EN = {
+export const Language_EN: ILanguage = {
     event_name: 'Event Name',
     create_event: 'Create Event',
     add_athlete: 'Add Sportsman',
     save_as: 'Save As',
     delete_btn: 'DELETE',
-    standart: 'STANDART',
+    standard: 'STANDART',
     pro: 'PRO',
     list: 'sportsmans data',
     result: 'result',
     form: {
-        cansel: 'cansel',
-        save_as: 'Save',
-        save: 'ADD SPORTSMAN',
+        cancel: 'cancel',
+        save_changes: 'Save',
+        save_add: 'ADD SPORTSMAN',
         first_name: 'FIRST NAME',
         last_name: 'LAST NAME',
         country: 'COUNTRY',
@@ -49,6 +51,6 @@ export const Language_EN = {
         gender_female: 'FEMALE',
         squat: 'SQUAT',
         bench_press: 'BENCH PRESS',
-        deadlift: 'DEADLIFT',
+        dead_lift: 'DEADLIFT',
     },
 };

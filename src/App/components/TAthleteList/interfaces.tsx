@@ -1,4 +1,6 @@
+import { IAthlete } from '../../state';
+
 export interface IContainer {}
 export interface ITAthleteList {
-    athletesList: any;
+    athletesList: IAthlete[];
 }

@@ -5,15 +5,18 @@ import Button from '../Button';
 import { ContextApp } from '../../state';
 
 const FBottomBtns: React.FC = memo(() => {
-    const { languages, GoToTournamentFromForm, sportsman } = useContext(ContextApp);
+    const { languages, GoToTournamentFromForm, SaveAthleteFromForm, AddAthleteFromForm, athlete } = useContext(
+        ContextApp
+    );
 
     return (
         <Container>
             <Content>
-                <Button name={languages.form.cansel} onClick={GoToTournamentFromForm} />
+                <Button name={languages.form.cancel} onClick={GoToTournamentFromForm} width={180} />
                 <Button
-                    name={sportsman && sportsman.sportsmanid !== '' ? languages.form.save : languages.form.save_as}
-                    onClick={GoToTournamentFromForm}
+                    name={athlete && athlete.id === '' ? languages.form.save_add : languages.form.save_changes}
+                    onClick={athlete && athlete.id === '' ? AddAthleteFromForm : SaveAthleteFromForm}
+                    width={180}
                 />
             </Content>
         </Container>

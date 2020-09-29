@@ -6,13 +6,13 @@ import Button from '../Button';
 
 const TBottombar: React.FC = memo(() => {
     const { event, languages, GoToForm } = useContext(ContextApp);
-    return event.sportsmans && event.sportsmans.length > 0 ? (
+    return event.athletesList && event.athletesList.length > 0 ? (
         <Container>
             <ContainerFrame>
                 <Bar>
                     <Button name={languages.save_as} width={180} onClick={() => console.log('save as')} />
                 </Bar>
-                <Button name={languages.add_spostsman} width={180} onClick={GoToForm} />
+                <Button name={languages.add_athlete} width={180} onClick={GoToForm} />
             </ContainerFrame>
         </Container>
     ) : (

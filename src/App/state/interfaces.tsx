@@ -63,3 +63,31 @@ export interface ISettings {
     form: boolean;
     dialog: boolean;
 }
+
+export interface ILanguage {
+    event_name: string;
+    create_event: string;
+    add_athlete: string;
+    save_as: string;
+    delete_btn: string;
+    standard: string;
+    pro: string;
+    list: string;
+    result: string;
+    form: {
+        cancel: string;
+        save_changes: string;
+        save_add: string;
+        first_name: string;
+        last_name: string;
+        country: string;
+        city: string;
+        coach: string;
+        team: string;
+        gender_male: string;
+        gender_female: string;
+        squat: string;
+        bench_press: string;
+        dead_lift: string;
+    };
+}

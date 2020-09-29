@@ -2,7 +2,7 @@ import React, { memo, useContext } from 'react';
 import { Container } from './style';
 import { IFInput } from './interfaces';
 import Input from '../Input';
-import { ContextApp } from '../../state';
+import { ContextApp, IAthlete } from '../../state';
 
 const FInput: React.FC<IFInput> = memo(({ placeholder, nameField, type, disable }) => {
     const { athlete, SetAthlete } = useContext(ContextApp);
@@ -13,12 +13,12 @@ const FInput: React.FC<IFInput> = memo(({ placeholder, nameField, type, disable 
         e.persist();
         if (type === 'int') {
             const intValue = parseInt(value);
-            SetAthlete((prev: any) => ({ ...prev, [nameField]: intValue }));
+            SetAthlete((prev: IAthlete) => ({ ...prev, [nameField]: intValue }));
         } else if (type === 'float') {
             const floatValue = parseFloat(value);
-            SetAthlete((prev: any) => ({ ...prev, [nameField]: floatValue }));
+            SetAthlete((prev: IAthlete) => ({ ...prev, [nameField]: floatValue }));
         } else {
-            SetAthlete((prev: any) => ({ ...prev, [nameField]: value }));
+            SetAthlete((prev: IAthlete) => ({ ...prev, [nameField]: value }));
         }
     };
     return (

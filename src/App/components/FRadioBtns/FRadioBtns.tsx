@@ -10,7 +10,7 @@ const FRadioBtns: React.FC = memo(() => {
     return (
         <Container>
             <Content onChange={onChangeFormRadioBtn}>
-                <FRadioBtn name={languages.standart} defaultValue='0' defaultChecked={event && event.card === 0} />
+                <FRadioBtn name={languages.standard} defaultValue='0' defaultChecked={event && event.card === 0} />
                 <FRadioBtn name={languages.pro} defaultValue='1' defaultChecked={event && event.card === 1} />
             </Content>
         </Container>

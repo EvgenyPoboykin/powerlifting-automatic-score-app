@@ -33,6 +33,9 @@ const App: React.FC = memo(() => {
         onClickDeleteT4T5,
         ClickTabOpen,
         ClickTabClose,
+        onDoubleClickAthlete,
+        SaveAthleteFromForm,
+        AddAthleteFromForm,
     } = App_Logic();
     // console.log({ event, eventlist });
     return (
@@ -64,6 +67,9 @@ const App: React.FC = memo(() => {
                 onClickDeleteT4T5,
                 ClickTabOpen,
                 ClickTabClose,
+                onDoubleClickAthlete,
+                SaveAthleteFromForm,
+                AddAthleteFromForm,
             }}
         >
             <Container>

@@ -14,7 +14,6 @@ import FInput from './FInput';
 import FGender from './FGender';
 
 import FTitle from './FTitle';
-import TTopTableBtn from './TTopTableBtn';
 
 import TTableItem from './TTableItem';
 import TTableItemTabName from './TTableItemTabName';
@@ -34,7 +33,6 @@ export {
     FInput,
     FGender,
     FTitle,
-    TTopTableBtn,
     TTableItem,
     TTableItemTabName,
 };

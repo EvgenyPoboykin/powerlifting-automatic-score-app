@@ -37,7 +37,7 @@ const FFormRightSection: React.FC<IFFormRightSection> = memo(() => {
                 ) : null}
                 {event.ts ? (
                     <>
-                        <FTitle name={languages.form.deadlift} />
+                        <FTitle name={languages.form.dead_lift} />
                         <Content>
                             <FInput nameField='dl_weight_1' placeholder='T1' type='float' />
                             <FInput nameField='dl_weight_2' placeholder='T2' type='float' />

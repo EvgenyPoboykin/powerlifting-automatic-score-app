@@ -19,7 +19,7 @@ const FFormLeftSection: React.FC<IFFormLeftSection> = memo(() => {
                 <Content>
                     <FGender />
 
-                    <FInput nameField='age' placeholder='1990' type='int' />
+                    <FInput nameField='bornYear' placeholder='1990' type='int' />
 
                     <FInput nameField='selfWeight' placeholder='00.0' type='float' />
                 </Content>

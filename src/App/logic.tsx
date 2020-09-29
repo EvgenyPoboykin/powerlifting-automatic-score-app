@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-// import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import {
     Event,
     Athlete,
@@ -10,6 +10,7 @@ import {
     IEventTemplate,
     ISettings,
     IAthlete,
+    ILanguage,
 } from './state';
 import { eventListDummy } from './dummy';
 
@@ -20,7 +21,7 @@ const App_Logic = () => {
     const [eventlist, SetEventList] = useState<IEventTemplate[]>(eventListDummy);
     const [settings, SetSettings] = useState<ISettings>(Settings);
     const [athlete, SetAthlete] = useState<IAthlete>(Athlete);
-    const [languages, SetLanguages] = useState(Language_RU);
+    const [languages, SetLanguages] = useState<ILanguage>(Language_RU);
     const [focusinput, SetFocusinput] = useState<boolean>(false);
     const SAInputRef = useRef<HTMLInputElement>(null);
 
@@ -35,19 +36,33 @@ const App_Logic = () => {
         } else {
             SetLanguages(Language_RU);
         }
-        SetSettings((prev: any) => ({ ...prev, lang: !settings.lang }));
+        SetSettings((prev: ISettings) => ({ ...prev, lang: !settings.lang }));
     };
 
     const SelectFormulaEvent = (item: any) => {
         if (item.value === 'IPF-Classic-Bench' || item.value === 'IPF-Classic-Bench-Equipped') {
-            SetEvent((prev: any) => ({ ...prev, label: item.label, value: item.value, pss: 0, gsl: 1, ts: 0 }));
+            SetEvent((prev: IEventTemplate) => ({
+                ...prev,
+                label: item.label,
+                value: item.value,
+                pss: false,
+                gsl: true,
+                ts: false,
+            }));
         } else {
-            SetEvent((prev: any) => ({ ...prev, label: item.label, value: item.value, pss: 1, gsl: 1, ts: 1 }));
+            SetEvent((prev: IEventTemplate) => ({
+                ...prev,
+                label: item.label,
+                value: item.value,
+                pss: true,
+                gsl: true,
+                ts: true,
+            }));
         }
     };
 
     const GoToTournament = useCallback(() => {
-        SetSettings((prev: any) => ({
+        SetSettings((prev: ISettings) => ({
             ...prev,
             tournament: true,
             start: false,
@@ -56,7 +71,7 @@ const App_Logic = () => {
 
     // Logic ${name} START
     const CreateEventAndGoTournament = (value: any) => {
-        let newEvent = { ...EventTemplate, event: value, id: 'uuid.v4()', date: new Date() };
+        let newEvent = { ...EventTemplate, event: value, id: uuidv4(), date: new Date() };
 
         SetEventList([newEvent, ...eventlist]);
         SetEvent(newEvent);
@@ -70,14 +85,14 @@ const App_Logic = () => {
 
     const onChangeFormRadioBtn = (e: React.ChangeEvent<HTMLDivElement>) => {
         if (event.card === 0) {
-            SetEvent((prev: any) => ({ ...prev, card: 1 }));
+            SetEvent((prev: IEventTemplate) => ({ ...prev, card: 1 }));
         } else {
-            SetEvent((prev: any) => ({ ...prev, card: 0 }));
+            SetEvent((prev: IEventTemplate) => ({ ...prev, card: 0 }));
         }
     };
 
     const GoToStartFromTournament = () => {
-        SetSettings((prev: any) => ({
+        SetSettings((prev: ISettings) => ({
             ...prev,
             tournament: false,
             start: true,
@@ -98,11 +113,11 @@ const App_Logic = () => {
     };
 
     const ChangeFormGender = (item: any | {}) => {
-        SetAthlete((prev: any) => ({ ...prev, gender_label: item.label, gender_value: item.value }));
+        SetAthlete((prev: IAthlete) => ({ ...prev, gender_label: item.label, gender_value: item.value }));
     };
 
     const GoToTournamentFromForm = () => {
-        SetSettings((prev: any) => ({
+        SetSettings((prev: ISettings) => ({
             ...prev,
             tournament: true,
             form: false,
@@ -112,15 +127,15 @@ const App_Logic = () => {
     };
 
     const GoDialog = () => {
-        SetSettings((prev: any) => ({
+        SetSettings((prev: ISettings) => ({
             ...prev,
             dialog: !settings.dialog,
         }));
     };
 
     const onClickEvent = useCallback(
-        (id: number) => {
-            const newEvent = eventlist && eventlist.filter((item: any) => id === item.id);
+        (id: string) => {
+            const newEvent = eventlist && eventlist.filter((item: IEventTemplate) => id === item.id);
 
             SetEvent(newEvent[0]);
             GoToTournament();
@@ -128,15 +143,35 @@ const App_Logic = () => {
         [SetEvent, GoToTournament, eventlist]
     );
 
-    const onClickDeleteEvent = (id: number) => {
-        const newEventsList = eventlist && eventlist.filter((item: any) => id !== item.id);
+    const onClickDeleteEvent = (id: string) => {
+        const newEventsList = eventlist && eventlist.filter((item: IEventTemplate) => id !== item.id);
         SetEventList(newEventsList);
+    };
+
+    const onDoubleClickAthlete = (id: string) => {
+        const newAthlete = event && event.athletesList.filter((item: IAthlete) => item.id === id);
+        SetAthlete(newAthlete[0]);
+        SetSettings((prev: any) => ({
+            ...prev,
+            tournament: false,
+            form: true,
+        }));
+    };
+
+    const SaveAthleteFromForm = () => {
+        const newAthleteListWithoutAthlete =
+            event && event.athletesList.filter((item: IAthlete) => item.id !== athlete.id);
+        const newAthleteList = [...newAthleteListWithoutAthlete, athlete];
+        SetEvent((prev: IEventTemplate) => ({ ...prev, athletesList: newAthleteList }));
+    };
+    const AddAthleteFromForm = () => {
+        SetEvent((prev: IEventTemplate) => ({ ...prev, athletesList: [...prev.athletesList, athlete] }));
     };
 
     // onClickT4, onClickT5, onClickDeleteT4T5
 
     const onClickT4 = () => {
-        SetEvent((prev: any) => ({
+        SetEvent((prev: IEventTemplate) => ({
             ...prev,
             disFourBtn: true,
             disFiveBtn: false,
@@ -146,7 +181,7 @@ const App_Logic = () => {
         }));
     };
     const onClickT5 = () => {
-        SetEvent((prev: any) => ({
+        SetEvent((prev: IEventTemplate) => ({
             ...prev,
             disFourBtn: true,
             disFiveBtn: true,
@@ -157,7 +192,7 @@ const App_Logic = () => {
     };
     const onClickDeleteT4T5 = () => {
         if (event.disFiveBtn) {
-            SetEvent((prev: any) => ({
+            SetEvent((prev: IEventTemplate) => ({
                 ...prev,
                 disFourBtn: true,
                 disFiveBtn: false,
@@ -166,7 +201,7 @@ const App_Logic = () => {
                 five: true,
             }));
         } else {
-            SetEvent((prev: any) => ({
+            SetEvent((prev: IEventTemplate) => ({
                 ...prev,
                 disFourBtn: false,
                 disFiveBtn: true,
@@ -179,15 +214,15 @@ const App_Logic = () => {
 
     const ClickTabOpen = (name: string) => {
         if (name === 'sq') {
-            SetEvent((prev: any) => ({ ...prev, sq: true, bp: false, dl: false }));
+            SetEvent((prev: IEventTemplate) => ({ ...prev, sq: true, bp: false, dl: false }));
         } else if (name === 'bp') {
-            SetEvent((prev: any) => ({ ...prev, sq: false, bp: true, dl: false }));
+            SetEvent((prev: IEventTemplate) => ({ ...prev, sq: false, bp: true, dl: false }));
         } else {
-            SetEvent((prev: any) => ({ ...prev, sq: false, bp: false, dl: true }));
+            SetEvent((prev: IEventTemplate) => ({ ...prev, sq: false, bp: false, dl: true }));
         }
     };
     const ClickTabClose = (name: string) => {
-        SetEvent((prev: any) => ({ ...prev, [name]: false }));
+        SetEvent((prev: IEventTemplate) => ({ ...prev, [name]: false }));
     };
 
     useEffect(() => {
@@ -212,7 +247,7 @@ const App_Logic = () => {
     }, []);
     // Logic ${name} END
 
-    console.log(event);
+    console.log(athlete);
 
     return {
         event,
@@ -241,6 +276,9 @@ const App_Logic = () => {
         onClickDeleteT4T5,
         ClickTabOpen,
         ClickTabClose,
+        onDoubleClickAthlete,
+        SaveAthleteFromForm,
+        AddAthleteFromForm,
     };
 };
 
