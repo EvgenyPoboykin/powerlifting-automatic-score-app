@@ -11,7 +11,7 @@ import {
     ISettings,
     IAthlete,
     ILanguage,
-} from './state';
+} from '../state';
 import { eventListDummy } from './dummy';
 
 // EventsList
