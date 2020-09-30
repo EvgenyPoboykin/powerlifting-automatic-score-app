@@ -148,9 +148,8 @@ const App_Logic = () => {
         SetEventList(newEventsList);
     };
 
-    const onDoubleClickAthlete = (id: string) => {
-        const newAthlete = event && event.athletesList.filter((item: IAthlete) => item.id === id);
-        SetAthlete(newAthlete[0]);
+    const onDoubleClickAthlete = (item: IAthlete) => {
+        SetAthlete(item);
         SetSettings((prev: any) => ({
             ...prev,
             tournament: false,

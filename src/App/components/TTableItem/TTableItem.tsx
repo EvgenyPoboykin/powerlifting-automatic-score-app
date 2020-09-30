@@ -19,10 +19,7 @@ import TAthleteDiscipline from '../TAthleteDiscipline';
 const TTableItem: React.FC<ITTableItem> = memo(({ athlete }) => {
     const { languages, event, onDoubleClickAthlete } = useContext(ContextApp);
 
-    const onDoubleClick = useCallback(() => onDoubleClickAthlete(athlete && athlete.id), [
-        onDoubleClickAthlete,
-        athlete,
-    ]);
+    const onDoubleClick = useCallback(() => onDoubleClickAthlete(athlete && athlete), [onDoubleClickAthlete, athlete]);
 
     const genderValue = athlete && athlete.gender_value;
     const idValue = athlete && athlete.id;
