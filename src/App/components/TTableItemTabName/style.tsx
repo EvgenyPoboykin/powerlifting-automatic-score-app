@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {} from './interfaces';
+import { IContainer } from './interfaces';
 
 export const Container = styled.div.attrs({ className: 'TTableItemTabName__container' })`
     width: 100%;
@@ -7,7 +7,7 @@ export const Container = styled.div.attrs({ className: 'TTableItemTabName__conta
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ed1c24;
+    color: ${(props: IContainer) => (props.nameField ? '#ed1c24' : '#fff')};
     opacity: 0.7;
     cursor: pointer;
 

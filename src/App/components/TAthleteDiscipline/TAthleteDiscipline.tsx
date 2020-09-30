@@ -4,7 +4,7 @@ import { ITAthleteDiscipline } from './interfaces';
 import { ContextApp } from '../../state';
 import TAthleteDisciplineOpen from '../TAthleteDisciplineOpen';
 import TAthleteDisciplineClose from '../TAthleteDisciplineClose';
-import TAthleteDisciplineTry from '../TAthleteDisciplineTry';
+import TTableItemTabName from '../TTableItemTabName';
 
 const TAthleteDiscipline: React.FC<ITAthleteDiscipline> = memo(({ discipline, show, type, data }) => {
     const { event } = useContext(ContextApp);
@@ -19,35 +19,33 @@ const TAthleteDiscipline: React.FC<ITAthleteDiscipline> = memo(({ discipline, sh
         }
     };
 
-    const Sort = (name: string) => {};
-
     const GenerateFields = () => {
         if (event[discipline]) {
             if (event[show]) {
                 if (type && !data) {
                     return (
                         <Container tabs={Tabs()}>
-                            <TAthleteDisciplineOpen name={show} SortBy={Sort} />
-                            <TAthleteDisciplineTry name={`${show}2`} SortBy={Sort} />
-                            <TAthleteDisciplineTry name={`${show}3`} SortBy={Sort} />
+                            <TAthleteDisciplineOpen name={show} nameField={`${show}_weight_2`} />
+                            <TTableItemTabName name={`${show}2`} nameField={`${show}_weight_2`} />
+                            <TTableItemTabName name={`${show}3`} nameField={`${show}_weight_3`} />
 
-                            {!event.four ? <TAthleteDisciplineTry name={`${show}4`} SortBy={Sort} /> : null}
-                            {!event.five ? <TAthleteDisciplineTry name={`${show}5`} SortBy={Sort} /> : null}
+                            {!event.four ? (
+                                <TTableItemTabName name={`${show}4`} nameField={`${show}_weight_4`} />
+                            ) : null}
+                            {!event.five ? (
+                                <TTableItemTabName name={`${show}5`} nameField={`${show}_weight_5`} />
+                            ) : null}
                         </Container>
                     );
                 } else {
                     return (
                         <Container tabs={Tabs()}>
-                            <TAthleteDisciplineTry name={data[`${show}_weight_1`]} SortBy={Sort} />
-                            <TAthleteDisciplineTry name={data[`${show}_weight_2`]} SortBy={Sort} />
-                            <TAthleteDisciplineTry name={data[`${show}_weight_3`]} SortBy={Sort} />
+                            <TTableItemTabName name={data[`${show}_weight_1`]} />
+                            <TTableItemTabName name={data[`${show}_weight_2`]} />
+                            <TTableItemTabName name={data[`${show}_weight_3`]} />
 
-                            {!event.four ? (
-                                <TAthleteDisciplineTry name={data[`${show}_weight_4`]} SortBy={Sort} />
-                            ) : null}
-                            {!event.five ? (
-                                <TAthleteDisciplineTry name={data[`${show}_weight_5`]} SortBy={Sort} />
-                            ) : null}
+                            {!event.four ? <TTableItemTabName name={data[`${show}_weight_4`]} /> : null}
+                            {!event.five ? <TTableItemTabName name={data[`${show}_weight_5`]} /> : null}
                         </Container>
                     );
                 }
@@ -55,7 +53,7 @@ const TAthleteDiscipline: React.FC<ITAthleteDiscipline> = memo(({ discipline, sh
                 if (type && !data) {
                     return <TAthleteDisciplineClose name={show} />;
                 } else {
-                    return <TAthleteDisciplineTry name={data[`personal_result_${show}`]} SortBy={Sort} />;
+                    return <TTableItemTabName name={data[`personal_result_${show}`]} />;
                 }
             }
         } else {

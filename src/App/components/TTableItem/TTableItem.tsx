@@ -25,10 +25,11 @@ const TTableItem: React.FC<ITTableItem> = memo(({ athlete }) => {
     ]);
 
     const genderValue = athlete && athlete.gender_value;
+    const idValue = athlete && athlete.id;
     const gritWidth = { sq: event.sq, bp: event.bp, dl: event.dl };
 
     return (
-        <Container gender={genderValue} onDoubleClick={onDoubleClick}>
+        <Container gender={genderValue} onDoubleClick={idValue ? onDoubleClick : undefined}>
             <ContainerSportsman>
                 <ContainerSportsmanData gender={genderValue}>
                     <Gender gender={genderValue}></Gender>
@@ -58,16 +59,16 @@ const TTableItem: React.FC<ITTableItem> = memo(({ athlete }) => {
                     </>
                 ) : (
                     <>
-                        <TTableItemTabName name='CW' />
-                        <TTableItemTabName name='SW' />
-                        <TTableItemTabName name='AC' />
+                        <TTableItemTabName name='CW' nameField='selfWeight' />
+                        <TTableItemTabName name='SW' nameField='selfWeight' />
+                        <TTableItemTabName name='AC' nameField='bornYear' />
                         <Disciplines gritWidth={gritWidth}>
                             <TAthleteDiscipline type={'toptable'} discipline='pss' show='sq' />
                             <TAthleteDiscipline type={'toptable'} discipline='gsl' show='bp' />
                             <TAthleteDiscipline type={'toptable'} discipline='ts' show='dl' />
                         </Disciplines>
-                        <TTableItemTabName name='AbsW' />
-                        <TTableItemTabName name={languages.result.toUpperCase()} />
+                        <TTableItemTabName name='AbsW' nameField='abs_weight' />
+                        <TTableItemTabName name={languages.result.toUpperCase()} nameField='abs_result' />
                     </>
                 )}
             </Content>

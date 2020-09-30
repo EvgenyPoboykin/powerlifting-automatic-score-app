@@ -18,6 +18,7 @@ export const Content = styled.div.attrs({ className: 'TSportsmanWeightCategory__
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     pointer-events: all;
+    color: #fff;
 
     opacity: 0.7;
 

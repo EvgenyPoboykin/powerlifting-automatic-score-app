@@ -2,18 +2,18 @@ import React, { memo, useCallback, useContext } from 'react';
 import { Container, Icon, Try } from './style';
 import { ITAthleteDisciplineOpen } from './interfaces';
 import { ContextApp } from '../../state';
+import TTableItemTabName from '../TTableItemTabName';
 
-const TAthleteDisciplineOpen: React.FC<ITAthleteDisciplineOpen> = memo(({ name, SortBy }) => {
+const TAthleteDisciplineOpen: React.FC<ITAthleteDisciplineOpen> = memo(({ name, nameField }) => {
     const { ClickTabClose } = useContext(ContextApp);
     const onClickClose = useCallback(() => ClickTabClose(name), [ClickTabClose, name]);
-    const Sort = useCallback(() => {
-        SortBy(`${name}1_weight`);
-        console.log(`${name}1_weight`);
-    }, [SortBy, name]);
+
     return (
         <Container>
             <Icon onClick={onClickClose} />
-            <Try onClick={Sort}>{name}1</Try>
+            <Try>
+                <TTableItemTabName name={`${name}1`} nameField={nameField} />
+            </Try>
         </Container>
     );
 });

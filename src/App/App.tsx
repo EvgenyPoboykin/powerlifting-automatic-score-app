@@ -36,6 +36,7 @@ const App: React.FC = memo(() => {
         onDoubleClickAthlete,
         SaveAthleteFromForm,
         AddAthleteFromForm,
+        SortBy,
     } = App_Logic();
     // console.log({ event, eventlist });
     return (
@@ -70,6 +71,7 @@ const App: React.FC = memo(() => {
                 onDoubleClickAthlete,
                 SaveAthleteFromForm,
                 AddAthleteFromForm,
+                SortBy,
             }}
         >
             <Container>

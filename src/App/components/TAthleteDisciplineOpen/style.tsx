@@ -15,12 +15,13 @@ export const Container = styled.div.attrs({ className: 'TDisciplineOpen__contain
 export const Icon = styled.img.attrs({ className: 'TDisciplineOpen__container--icon', src: ArrowRight })`
     position: absolute;
     width: 20px;
-    height: 15px;
+    height: 20px;
     left: 0;
     padding-left: 10px;
     cursor: pointer;
     fill: #d8d8d8;
     pointer-events: all;
+    z-index: 10;
 
     opacity: 0.7;
     &:hover {

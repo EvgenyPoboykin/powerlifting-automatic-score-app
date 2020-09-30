@@ -212,6 +212,26 @@ const App_Logic = () => {
         }
     };
 
+    const SortBy = (value: string, trigger: boolean) => {
+        let athlete_list: any;
+
+        if (trigger) {
+            athlete_list =
+                event &&
+                event.athletesList.sort((a: any, b: any) => {
+                    return a[value] - b[value];
+                });
+        } else {
+            athlete_list =
+                event &&
+                event.athletesList.sort((a: any, b: any) => {
+                    return b[value] - a[value];
+                });
+        }
+
+        SetEvent((prev: IEventTemplate) => ({ ...prev, athletesList: athlete_list }));
+    };
+
     const ClickTabOpen = (name: string) => {
         if (name === 'sq') {
             SetEvent((prev: IEventTemplate) => ({ ...prev, sq: true, bp: false, dl: false }));
@@ -247,7 +267,7 @@ const App_Logic = () => {
     }, []);
     // Logic ${name} END
 
-    console.log(athlete);
+    console.log(event.athletesList);
 
     return {
         event,
@@ -279,6 +299,7 @@ const App_Logic = () => {
         onDoubleClickAthlete,
         SaveAthleteFromForm,
         AddAthleteFromForm,
+        SortBy,
     };
 };
 
