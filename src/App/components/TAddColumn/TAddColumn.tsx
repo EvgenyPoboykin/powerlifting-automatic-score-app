@@ -5,12 +5,18 @@ import TAddColumnBtn from '../TAddColumnBtn';
 import { ContextApp } from '../../state';
 
 const TAddColumn: React.FC = memo(() => {
-    const { event, languages, onClickT4, onClickT5, onClickDeleteT4T5 } = useContext(ContextApp);
+    const {
+        event: { disFourBtn, disFiveBtn, disDelBtn },
+        languages: { delete_btn },
+        onClickT4,
+        onClickT5,
+        onClickDeleteT4T5,
+    } = useContext(ContextApp);
     return (
         <Container>
-            <TAddColumnBtn name={'+T4'} disabled={event.disFourBtn} onClick={onClickT4} />
-            <TAddColumnBtn name={'+T5'} disabled={event.disFiveBtn} onClick={onClickT5} />
-            <TAddColumnBtn name={languages.delete_btn} disabled={event.disDelBtn} onClick={onClickDeleteT4T5} />
+            <TAddColumnBtn name={'+T4'} disabled={disFourBtn} onClick={onClickT4} />
+            <TAddColumnBtn name={'+T5'} disabled={disFiveBtn} onClick={onClickT5} />
+            <TAddColumnBtn name={delete_btn} disabled={disDelBtn} onClick={onClickDeleteT4T5} />
         </Container>
     );
 });

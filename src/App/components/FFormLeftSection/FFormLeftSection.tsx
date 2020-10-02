@@ -7,14 +7,19 @@ import { ContextApp } from '../../state';
 import FGender from '../FGender';
 
 const FFormLeftSection: React.FC<IFFormLeftSection> = memo(() => {
-    const { languages, event } = useContext(ContextApp);
+    const {
+        languages: {
+            form: { first_name, last_name, country, city, coach, team },
+        },
+        event: { card },
+    } = useContext(ContextApp);
 
     return (
         <FFormSection>
             <Container>
-                <FInput placeholder={languages.form.first_name} nameField='firstName' />
+                <FInput placeholder={first_name} nameField='firstName' />
 
-                <FInput placeholder={languages.form.last_name} nameField='lastName' />
+                <FInput placeholder={last_name} nameField='lastName' />
 
                 <Content>
                     <FGender />
@@ -24,15 +29,15 @@ const FFormLeftSection: React.FC<IFFormLeftSection> = memo(() => {
                     <FInput nameField='selfWeight' placeholder='00.0' type='float' />
                 </Content>
 
-                {event && event.card === 1 ? (
+                {card === 1 ? (
                     <>
-                        <FInput nameField='country' placeholder={languages.form.country} />
+                        <FInput nameField='country' placeholder={country} />
 
-                        <FInput nameField='city' placeholder={languages.form.city} />
+                        <FInput nameField='city' placeholder={city} />
 
-                        <FInput nameField='coach' placeholder={languages.form.coach} />
+                        <FInput nameField='coach' placeholder={coach} />
 
-                        <FInput nameField='team' placeholder={languages.form.team} />
+                        <FInput nameField='team' placeholder={team} />
                     </>
                 ) : null}
             </Container>

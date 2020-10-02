@@ -7,7 +7,7 @@ import SAMenu from '../SAMenu';
 import SAEventsList from '../SAEventsList';
 
 const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
-    const { settings, eventlist } = useContext(ContextApp);
+    const { eventlist } = useContext(ContextApp);
 
     const grids = () => {
         if (eventlist && eventlist.length > 0) {
@@ -17,7 +17,7 @@ const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
         }
     };
     return (
-        <Page trigger={settings[name]} inpoint='0%' outpoint='-100%'>
+        <Page>
             <Container>
                 <Content grid={grids()}>
                     <SAMenu />
@@ -28,3 +28,4 @@ const StartAppPage: React.FC<IStartAppPage> = memo(({ name }) => {
     );
 });
 export default StartAppPage;
+// trigger={settings[name]} inpoint='0%' outpoint='-100%'

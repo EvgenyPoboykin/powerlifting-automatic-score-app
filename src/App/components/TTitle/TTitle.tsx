@@ -4,10 +4,12 @@ import {} from './interfaces';
 import { ContextApp } from '../../state';
 
 const TTitle: React.FC = memo(() => {
-    const { event } = useContext(ContextApp);
+    const {
+        event: { eventName },
+    } = useContext(ContextApp);
     return (
         <Container>
-            <Content>{event.event}</Content>
+            <Content>{eventName}</Content>
         </Container>
     );
 });

@@ -33,7 +33,7 @@ export interface IAthlete {
 }
 
 export interface IEventTemplate {
-    event: string;
+    eventName: string;
     id: string;
     date: any;
     athletesList: IAthlete[] | [];

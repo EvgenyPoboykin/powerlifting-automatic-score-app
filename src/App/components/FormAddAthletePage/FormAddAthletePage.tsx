@@ -1,16 +1,14 @@
-import React, { memo, useContext } from 'react';
+import React, { memo } from 'react';
 import Page from '../Page';
 import { Container, Content, Frame } from './style';
-import { IFormAddSportsmanPage } from './interfaces';
-import { ContextApp } from '../../state';
+import { IFormAddAthletePage } from './interfaces';
 import FRadioBtns from '../FRadioBtns';
 import FBottomBtns from '../FBottomBtns';
 import FForm from '../FForm';
 
-const FormAddSportsmanPage: React.FC<IFormAddSportsmanPage> = memo(({ name }) => {
-    const { settings } = useContext(ContextApp);
+const FormAddAthletePage: React.FC<IFormAddAthletePage> = memo(() => {
     return (
-        <Page trigger={settings[name]} inpoint='0%' outpoint='100%'>
+        <Page>
             <Container>
                 <Content>
                     <Frame>
@@ -23,4 +21,6 @@ const FormAddSportsmanPage: React.FC<IFormAddSportsmanPage> = memo(({ name }) =>
         </Page>
     );
 });
-export default FormAddSportsmanPage;
+export default FormAddAthletePage;
+
+// trigger={settings[name]} inpoint='0%' outpoint='100%'

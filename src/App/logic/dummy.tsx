@@ -1,6 +1,6 @@
 export const eventListDummy = [
     {
-        event: 'Test Tournument',
+        eventName: 'Test Tournument',
         id: '2',
         date: '20 20 2020',
         athletesList: [

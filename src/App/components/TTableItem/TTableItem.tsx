@@ -17,7 +17,11 @@ import TAthleteAgeCategory from '../TAthleteAgeCategory';
 import TAthleteDiscipline from '../TAthleteDiscipline';
 
 const TTableItem: React.FC<ITTableItem> = memo(({ athlete }) => {
-    const { languages, event, onDoubleClickAthlete } = useContext(ContextApp);
+    const {
+        languages: { result, list },
+        event,
+        onDoubleClickAthlete,
+    } = useContext(ContextApp);
 
     const onDoubleClick = useCallback(() => onDoubleClickAthlete(athlete && athlete), [onDoubleClickAthlete, athlete]);
 
@@ -35,7 +39,7 @@ const TTableItem: React.FC<ITTableItem> = memo(({ athlete }) => {
                             {athlete.firstName} {athlete.lastName}
                         </ContainerSportsmanDataName>
                     ) : (
-                        <ContainerSportsmanDataName gender={genderValue}>{languages.list}</ContainerSportsmanDataName>
+                        <ContainerSportsmanDataName gender={genderValue}>{list}</ContainerSportsmanDataName>
                     )}
                 </ContainerSportsmanData>
             </ContainerSportsman>
@@ -65,7 +69,7 @@ const TTableItem: React.FC<ITTableItem> = memo(({ athlete }) => {
                             <TAthleteDiscipline type={'toptable'} discipline='ts' show='dl' />
                         </Disciplines>
                         <TTableItemTabName name='AbsW' nameField='abs_weight' />
-                        <TTableItemTabName name={languages.result.toUpperCase()} nameField='abs_result' />
+                        <TTableItemTabName name={result.toUpperCase()} nameField='abs_result' />
                     </>
                 )}
             </Content>

@@ -1,39 +1,39 @@
 import { useContext, useEffect } from 'react';
 import { ContextApp } from '../../state';
-const { ipcRenderer } = window.require('electron');
+// const { ipcRenderer } = window.require('electron');
 
 const TopBar_Logic = () => {
-    const { GoDialog, ChangeLang, event, eventlist, settings, focusinput } = useContext(ContextApp);
-
-    const SaveDataInLocalStorage = () => {
-        return new Promise((resolve) => {
-            localStorage.setItem('event', JSON.stringify(event));
-            localStorage.setItem('eventslist', JSON.stringify(eventlist));
-            localStorage.setItem('settingsapp', JSON.stringify(settings));
-            resolve();
-        });
-    };
+    const { GoDialog, ChangeLang, settings, focusinput } = useContext(ContextApp);
+    // event, eventlist,
+    // const SaveDataInLocalStorage = () => {
+    //     return new Promise((resolve) => {
+    //         localStorage.setItem('event', JSON.stringify(event));
+    //         localStorage.setItem('eventslist', JSON.stringify(eventlist));
+    //         localStorage.setItem('settingsapp', JSON.stringify(settings));
+    //         resolve();
+    //     });
+    // };
 
     const onClickClose = () => {
-        SaveDataInLocalStorage().then(() => ipcRenderer.send('close'));
+        // SaveDataInLocalStorage().then(() => ipcRenderer.send('close'));
     };
 
     const ShortCut = (e: KeyboardEvent) => {
         e.preventDefault();
 
         if ((e.ctrlKey || e.metaKey) && e.key === 'Q') {
-            SaveDataInLocalStorage().then(() => ipcRenderer.send('close'));
+            // SaveDataInLocalStorage().then(() => ipcRenderer.send('close'));
         }
     };
 
     const onClickMinimize = () => {
-        ipcRenderer.send('minimize');
+        // ipcRenderer.send('minimize');
     };
     const onClickMaximize = () => {
-        ipcRenderer.send('maximize');
+        // ipcRenderer.send('maximize');
     };
     const onDoubleClick = () => {
-        ipcRenderer.send('double-click-name');
+        // ipcRenderer.send('double-click-name');
     };
 
     useEffect(() => {

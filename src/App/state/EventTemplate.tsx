@@ -1,7 +1,7 @@
 import { IEventTemplate } from './interfaces';
 
 export const EventTemplate: IEventTemplate = {
-    event: '',
+    eventName: '',
     id: '',
     date: null,
     athletesList: [],

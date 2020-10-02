@@ -7,7 +7,10 @@ import Input from '../Input';
 
 const SAMenu: React.FC = memo(() => {
     const [value, SetValue] = useState<string>('');
-    const { CreateEventAndGoTournament, languages } = useContext(ContextApp);
+    const {
+        CreateEventAndGoTournament,
+        languages: { event_name, create_event },
+    } = useContext(ContextApp);
 
     const PROXY_CreateEventAndGoTournament = useCallback(() => {
         CreateEventAndGoTournament(value);
@@ -22,10 +25,10 @@ const SAMenu: React.FC = memo(() => {
         <Container>
             <Logo />
             <Form>
-                <Input placeholder={languages.event_name} onChange={onChange} defaultValue={value} />
+                <Input placeholder={event_name} onChange={onChange} defaultValue={value} />
 
                 <Button
-                    name={languages.create_event}
+                    name={create_event}
                     mode={value === '' ? '' : 'red'}
                     onClick={PROXY_CreateEventAndGoTournament}
                     disabled={value === '' ? true : false}

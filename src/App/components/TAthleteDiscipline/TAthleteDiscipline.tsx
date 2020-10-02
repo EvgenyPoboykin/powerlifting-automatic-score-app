@@ -7,12 +7,15 @@ import TAthleteDisciplineClose from '../TAthleteDisciplineClose';
 import TTableItemTabName from '../TTableItemTabName';
 
 const TAthleteDiscipline: React.FC<ITAthleteDiscipline> = memo(({ discipline, show, type, data }) => {
-    const { event } = useContext(ContextApp);
+    const {
+        event,
+        event: { five, four },
+    } = useContext(ContextApp);
 
     const Tabs = () => {
-        if (!event.four && event.five) {
+        if (!four && five) {
             return 4;
-        } else if (!event.four && !event.five) {
+        } else if (!four && !five) {
             return 5;
         } else {
             return 3;
@@ -29,12 +32,8 @@ const TAthleteDiscipline: React.FC<ITAthleteDiscipline> = memo(({ discipline, sh
                             <TTableItemTabName name={`${show}2`} nameField={`${show}_weight_2`} />
                             <TTableItemTabName name={`${show}3`} nameField={`${show}_weight_3`} />
 
-                            {!event.four ? (
-                                <TTableItemTabName name={`${show}4`} nameField={`${show}_weight_4`} />
-                            ) : null}
-                            {!event.five ? (
-                                <TTableItemTabName name={`${show}5`} nameField={`${show}_weight_5`} />
-                            ) : null}
+                            {!four ? <TTableItemTabName name={`${show}4`} nameField={`${show}_weight_4`} /> : null}
+                            {!five ? <TTableItemTabName name={`${show}5`} nameField={`${show}_weight_5`} /> : null}
                         </Container>
                     );
                 } else {
@@ -44,8 +43,8 @@ const TAthleteDiscipline: React.FC<ITAthleteDiscipline> = memo(({ discipline, sh
                             <TTableItemTabName name={data[`${show}_weight_2`]} />
                             <TTableItemTabName name={data[`${show}_weight_3`]} />
 
-                            {!event.four ? <TTableItemTabName name={data[`${show}_weight_4`]} /> : null}
-                            {!event.five ? <TTableItemTabName name={data[`${show}_weight_5`]} /> : null}
+                            {!four ? <TTableItemTabName name={data[`${show}_weight_4`]} /> : null}
+                            {!five ? <TTableItemTabName name={data[`${show}_weight_5`]} /> : null}
                         </Container>
                     );
                 }

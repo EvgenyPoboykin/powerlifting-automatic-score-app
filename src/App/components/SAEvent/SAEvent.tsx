@@ -1,4 +1,5 @@
 import React, { memo, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Container,
     EventItem,
@@ -12,7 +13,9 @@ import { IStartAppEvent } from './interfaces';
 import { ContextApp } from '../../state';
 
 const SAEvent: React.FC<IStartAppEvent> = memo(({ item, onClick, onClickDelete }) => {
-    const { settings } = useContext(ContextApp);
+    const {
+        settings: { lang },
+    } = useContext(ContextApp);
     const now = new Date(item.date);
 
     var optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -25,21 +28,23 @@ const SAEvent: React.FC<IStartAppEvent> = memo(({ item, onClick, onClickDelete }
     const timeUSA = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
     return (
-        <Container>
-            <EventItem>
-                <EventItemName onClick={onClick}>
-                    {item.event && item.event.length > 70 ? `${item.event.substr(0, 70)}...` : item.event}
-                </EventItemName>
-                <EventItemTimestamp>
-                    {settings.lang ? `${eng} ( ${timeUSA} )` : `${rus} ( ${time} )`}
-                </EventItemTimestamp>
-                <EventItemDeleteBorder>
-                    <EventItemDelete onClick={onClickDelete}>
-                        <EventIconDelete></EventIconDelete>
-                    </EventItemDelete>
-                </EventItemDeleteBorder>
-            </EventItem>
-        </Container>
+        <Link to={`/${item.id}`}>
+            <Container>
+                <EventItem>
+                    <EventItemName>
+                        {item.event && item.eventName.length > 70
+                            ? `${item.eventName.substr(0, 70)}...`
+                            : item.eventName}
+                    </EventItemName>
+                    <EventItemTimestamp>{lang ? `${eng} ( ${timeUSA} )` : `${rus} ( ${time} )`}</EventItemTimestamp>
+                    <EventItemDeleteBorder>
+                        <EventItemDelete onClick={onClickDelete}>
+                            <EventIconDelete></EventIconDelete>
+                        </EventItemDelete>
+                    </EventItemDeleteBorder>
+                </EventItem>
+            </Container>
+        </Link>
     );
 });
 export default SAEvent;

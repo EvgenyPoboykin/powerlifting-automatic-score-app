@@ -20,7 +20,7 @@ const TopBar: React.FC = memo(() => {
         onDoubleClick,
         GoDialog,
         ChangeLang,
-        settings,
+        settings: { lang },
     } = TopBar_Logic();
     return (
         <Container>
@@ -35,9 +35,7 @@ const TopBar: React.FC = memo(() => {
                 <Name>Powerlifting Automatic Score v {json.version} (Standalone)</Name>
             </ContainerName>
             <ContainerSettings>
-                <AutorsLink onClick={(e) => ChangeLang(e.currentTarget!.textContent)}>
-                    {settings.lang ? 'EN' : 'RU'}
-                </AutorsLink>
+                <AutorsLink onClick={(e) => ChangeLang(e.currentTarget!.textContent)}>{lang ? 'EN' : 'RU'}</AutorsLink>
                 <AutorsLink onClick={GoDialog}>Autors</AutorsLink>
             </ContainerSettings>
         </Container>

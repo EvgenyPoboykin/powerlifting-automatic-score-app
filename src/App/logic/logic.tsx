@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
     Event,
@@ -17,7 +17,7 @@ import { eventListDummy } from './dummy';
 // EventsList
 
 const App_Logic = () => {
-    const [event, SetEvent] = useState<IEventTemplate>(EventTemplate);
+    const [event, SetEvent] = useState<IEventTemplate>(eventListDummy[0]);
     const [eventlist, SetEventList] = useState<IEventTemplate[]>(eventListDummy);
     const [settings, SetSettings] = useState<ISettings>(Settings);
     const [athlete, SetAthlete] = useState<IAthlete>(Athlete);
@@ -40,11 +40,12 @@ const App_Logic = () => {
     };
 
     const SelectFormulaEvent = (item: any) => {
-        if (item.value === 'IPF-Classic-Bench' || item.value === 'IPF-Classic-Bench-Equipped') {
+        const { label, value } = item;
+        if (value === 'IPF-Classic-Bench' || value === 'IPF-Classic-Bench-Equipped') {
             SetEvent((prev: IEventTemplate) => ({
                 ...prev,
-                label: item.label,
-                value: item.value,
+                label,
+                value,
                 pss: false,
                 gsl: true,
                 ts: false,
@@ -52,8 +53,8 @@ const App_Logic = () => {
         } else {
             SetEvent((prev: IEventTemplate) => ({
                 ...prev,
-                label: item.label,
-                value: item.value,
+                label,
+                value,
                 pss: true,
                 gsl: true,
                 ts: true,
@@ -71,7 +72,7 @@ const App_Logic = () => {
 
     // Logic ${name} START
     const CreateEventAndGoTournament = (value: any) => {
-        let newEvent = { ...EventTemplate, event: value, id: uuidv4(), date: new Date() };
+        let newEvent = { ...EventTemplate, eventName: value, id: uuidv4(), date: new Date() };
 
         SetEventList([newEvent, ...eventlist]);
         SetEvent(newEvent);
@@ -98,7 +99,8 @@ const App_Logic = () => {
             start: true,
         }));
 
-        const EventListWithoutEvent = eventlist.filter((item: any) => item.id !== event.id);
+        const EventListClone = [...eventlist];
+        const EventListWithoutEvent = EventListClone.filter((item: any) => item.id !== event.id);
         const newEventsList = [event, ...EventListWithoutEvent];
 
         SetEvent(Event);
@@ -135,7 +137,8 @@ const App_Logic = () => {
 
     const onClickEvent = useCallback(
         (id: string) => {
-            const newEvent = eventlist && eventlist.filter((item: IEventTemplate) => id === item.id);
+            const EventListClone = [...eventlist];
+            const newEvent = EventListClone.filter((item: IEventTemplate) => id === item.id);
 
             SetEvent(newEvent[0]);
             GoToTournament();
@@ -144,7 +147,8 @@ const App_Logic = () => {
     );
 
     const onClickDeleteEvent = (id: string) => {
-        const newEventsList = eventlist && eventlist.filter((item: IEventTemplate) => id !== item.id);
+        const EventListClone = [...eventlist];
+        const newEventsList = EventListClone.filter((item: IEventTemplate) => id !== item.id);
         SetEventList(newEventsList);
     };
 
@@ -158,8 +162,9 @@ const App_Logic = () => {
     };
 
     const SaveAthleteFromForm = () => {
-        const newAthleteListWithoutAthlete =
-            event && event.athletesList.filter((item: IAthlete) => item.id !== athlete.id);
+        const { athletesList } = event;
+        const AthleteListClone = [...athletesList];
+        const newAthleteListWithoutAthlete = AthleteListClone.filter((item: IAthlete) => item.id !== athlete.id);
         const newAthleteList = [...newAthleteListWithoutAthlete, athlete];
         SetEvent((prev: IEventTemplate) => ({ ...prev, athletesList: newAthleteList }));
     };
@@ -190,7 +195,8 @@ const App_Logic = () => {
         }));
     };
     const onClickDeleteT4T5 = () => {
-        if (event.disFiveBtn) {
+        const { disFiveBtn } = event;
+        if (disFiveBtn) {
             SetEvent((prev: IEventTemplate) => ({
                 ...prev,
                 disFourBtn: true,
@@ -214,18 +220,16 @@ const App_Logic = () => {
     const SortBy = (value: string, trigger: boolean) => {
         let athlete_list: any;
 
+        const { athletesList } = event;
+
         if (trigger) {
-            athlete_list =
-                event &&
-                event.athletesList.sort((a: any, b: any) => {
-                    return a[value] - b[value];
-                });
+            athlete_list = athletesList.sort((a: any, b: any) => {
+                return a[value] - b[value];
+            });
         } else {
-            athlete_list =
-                event &&
-                event.athletesList.sort((a: any, b: any) => {
-                    return b[value] - a[value];
-                });
+            athlete_list = athletesList.sort((a: any, b: any) => {
+                return b[value] - a[value];
+            });
         }
 
         SetEvent((prev: IEventTemplate) => ({ ...prev, athletesList: athlete_list }));
@@ -244,29 +248,29 @@ const App_Logic = () => {
         SetEvent((prev: IEventTemplate) => ({ ...prev, [name]: false }));
     };
 
-    useEffect(() => {
-        const settingsLS: any = localStorage.getItem('settingsapp');
-        // const eventsLS: any = localStorage.getItem('eventslist');
-        const eventLS: any = localStorage.getItem('event');
+    // useEffect(() => {
+    //     const settingsLS: any = localStorage.getItem('settingsapp');
+    //     // const eventsLS: any = localStorage.getItem('eventslist');
+    //     const eventLS: any = localStorage.getItem('event');
 
-        const settingsArray: any = JSON.parse(settingsLS);
-        // const eventsArray: any = JSON.parse(eventsLS);
-        const eventArray: any = JSON.parse(eventLS);
+    //     const settingsArray: any = JSON.parse(settingsLS);
+    //     // const eventsArray: any = JSON.parse(eventsLS);
+    //     const eventArray: any = JSON.parse(eventLS);
 
-        // if (settingsArray && eventsArray.length 0 && eventArray !== {}) {
-        SetEvent(eventArray);
-        // SetEventList(eventsArray);
-        SetSettings(settingsArray);
-        // }
-        //  else {
-        // localStorage.setItem('settingsapp', JSON.stringify(settings));
-        // localStorage.setItem('event', JSON.stringify(state.event));
-        // localStorage.setItem('eventslist', JSON.stringify(state.eventslist));
-        // }
-    }, []);
+    //     // if (settingsArray && eventsArray.length 0 && eventArray !== {}) {
+    //     SetEvent(eventArray);
+    //     // SetEventList(eventsArray);
+    //     SetSettings(settingsArray);
+    //     // }
+    //     //  else {
+    //     // localStorage.setItem('settingsapp', JSON.stringify(settings));
+    //     // localStorage.setItem('event', JSON.stringify(state.event));
+    //     // localStorage.setItem('eventslist', JSON.stringify(state.eventslist));
+    //     // }
+    // }, []);
     // Logic ${name} END
 
-    console.log(event.athletesList);
+    console.log(eventlist);
 
     return {
         event,

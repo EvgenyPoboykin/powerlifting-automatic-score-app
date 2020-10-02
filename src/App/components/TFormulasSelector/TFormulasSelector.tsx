@@ -16,9 +16,12 @@ const Formulas = [
 ];
 
 const TFormulasSelector: React.FC = memo(() => {
-    const { event, SelectFormulaEvent } = useContext(ContextApp);
+    const {
+        event: { label, value },
+        SelectFormulaEvent,
+    } = useContext(ContextApp);
 
-    const selectedOption = { label: event.label, value: event.value };
+    const selectedOption = { label: label, value: value };
 
     return <SelectorBox selectedOption={selectedOption} items={Formulas} selectChange={SelectFormulaEvent} />;
 });

@@ -12,10 +12,15 @@ import TAthleteList from '../TAthleteList';
 import TBottombar from '../TBottombar';
 
 const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
-    const { settings, GoToStartFromTournament, GoToForm, event, languages } = useContext(ContextApp);
+    const {
+        GoToStartFromTournament,
+        GoToForm,
+        event: { athletesList },
+        languages: { add_athlete },
+    } = useContext(ContextApp);
 
     return (
-        <Page trigger={settings[name]} inpoint='0%' outpoint={settings.form ? '-100%' : '100%'}>
+        <Page>
             <Container>
                 <ButtonArrow directional='up' onClick={GoToStartFromTournament} />
                 <ContentPage>
@@ -23,13 +28,13 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
 
                     <TMenu />
 
-                    {event.athletesList && event.athletesList.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
+                    {athletesList && athletesList.length > 0 ? <TTopTable /> : <BtnWrapper></BtnWrapper>}
 
-                    {event.athletesList && event.athletesList.length > 0 ? (
-                        <TAthleteList athletesList={event.athletesList} />
+                    {athletesList && athletesList.length > 0 ? (
+                        <TAthleteList athletesList={athletesList} />
                     ) : (
                         <BtnWrapper>
-                            <Button name={languages.add_athlete} width={280} onClick={GoToForm} />
+                            <Button name={add_athlete} width={280} onClick={GoToForm} />
                         </BtnWrapper>
                     )}
 
@@ -40,3 +45,4 @@ const TournamentPage: React.FC<ITournamentPage> = memo(({ name }) => {
     );
 });
 export default TournamentPage;
+// trigger={settings[name]} inpoint='0%' outpoint={settings.form ? '-100%' : '100%'}
